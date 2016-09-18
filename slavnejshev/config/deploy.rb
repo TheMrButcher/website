@@ -2,6 +2,7 @@
 lock '3.6.1'
 
 set :repo_url, 'https://github.com/TheMrButcher/website.git'
+set :repo_tree, 'slavnejshev'
 set :application, 'slavnejshev'
 application = 'slavnejshev'
 set :rvm_type, :user
@@ -110,19 +111,15 @@ namespace :deploy do
     end
   end
 
-  after :finishing, 'deploy:cleanup'
-  after :finishing, 'deploy:restart'
-
-  after :updating, 'deploy:symlink'
-
-  after :setup, 'deploy:foreman_init'
-
-  after :foreman_init, 'foreman:start'
-  before :foreman_init, 'rvm:hook'
-
   before :setup, 'deploy:starting'
   before :setup, 'deploy:updating'
   before :setup, 'bundler:install'
+  after :setup, 'deploy:symlink'
+  before :foreman_init, 'rvm:hook'
+  after :setup, 'deploy:foreman_init'
+  after :foreman_init, 'foreman:start'
+  after :finishing, 'deploy:cleanup'
+  after :cleanup, 'deploy:restart'
 end
   
 before :deploy, 'git:deploy'
