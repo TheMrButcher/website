@@ -43,9 +43,9 @@ namespace :git do
   task :deploy do
     ask(:message, "Commit message?")
     run_locally do
-      execute "git add -A"
+      execute "git add --all :/"
       execute "git commit -m \"#{fetch(:message)}\""
-      execute "git push"
+      execute "git push origin master"
     end
   end
 end
