@@ -63,6 +63,7 @@ namespace :deploy do
       execute "mkdir -p #{shared_path}/system"
 
       upload!('shared/database.yml', "#{shared_path}/config/database.yml")
+      upload!('shared/secrets.yml', "#{shared_path}/config/secrets.yml")
       upload!('shared/Procfile', "#{shared_path}/Procfile")
       upload!('shared/nginx.conf', "#{shared_path}/nginx.conf")
       
@@ -77,6 +78,7 @@ namespace :deploy do
   task :symlink do
     on roles(:all) do
       execute "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      execute "ln -s #{shared_path}/config/secrets.yml #{release_path}/config/secrets.yml"
       execute "ln -s #{shared_path}/Procfile #{release_path}/Procfile"
       execute "ln -s #{shared_path}/system #{release_path}/public/system"
     end
@@ -105,6 +107,7 @@ namespace :deploy do
         execute :bundle, "exec foreman export systemd #{foreman_temp} -a #{application} -u deploy -l /var/www/apps/#{application}/log -d #{current_path}"
       end
       sudo "rsync -a #{foreman_temp}/ /lib/systemd/system/"
+      sudo "systemctl daemon-reload"
       sudo "rm -r #{foreman_temp}"
     end
   end
