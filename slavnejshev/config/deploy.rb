@@ -127,6 +127,7 @@ namespace :deploy do
   after :foreman_init, 'foreman:start'
   after :finishing, 'deploy:cleanup'
   after :cleanup, 'deploy:restart'
+  before :migrating, 'deploy:symlink'
 end
   
 before :deploy, 'git:deploy'
