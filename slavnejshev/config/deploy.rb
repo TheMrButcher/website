@@ -113,7 +113,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      sudo "systemctl restart #{application}"
+      sudo "systemctl restart #{application}.target"
     end
   end
 
@@ -121,7 +121,7 @@ namespace :deploy do
   before :setup, 'deploy:updating'
   before :setup, 'bundler:install'
   after :setup, 'deploy:symlink'
-  after :symlink, 'deploy:create_db'
+  after :setup, 'deploy:create_db'
   before :foreman_init, 'rvm:hook'
   after :setup, 'deploy:foreman_init'
   after :foreman_init, 'foreman:start'
