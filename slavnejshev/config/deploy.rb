@@ -8,6 +8,7 @@ application = 'slavnejshev'
 set :rvm_type, :user
 set :rvm_ruby_version, '2.3.0-p0'
 set :deploy_to, '/var/www/apps/slavnejshev'
+set :bundle_flags, '--quiet'
 
 namespace :foreman do
   desc 'Start server'
