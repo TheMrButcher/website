@@ -19,5 +19,6 @@
 /Procfile
 /config/deploy
 /config/database.yml
+/config/secrets.yml
 /shared
 /Gemfile.lock
