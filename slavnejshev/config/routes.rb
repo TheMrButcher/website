@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :private do
     get 'login', to: 'sessions#new'
+    post 'login', to: 'sessions#create'
     resources :users, only: [:index, :show, :edit, :update ]
   end
 

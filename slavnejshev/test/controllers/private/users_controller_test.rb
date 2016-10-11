@@ -1,19 +1,56 @@
 require 'test_helper'
 
 class Private::UsersControllerTest < ActionDispatch::IntegrationTest
-  test "should get show" do
-    get private_users_show_url
-    assert_response :success
+  def setup
+    @admin = private_users(:admin)
+    @first = private_users(:first)
+    @second = private_users(:second)
   end
-
-  test "should get index" do
-    get private_users_index_url
-    assert_response :success
+  
+  test "need log in to see user" do
+    get private_user_path(@first)
+    assert_not flash.empty?
+    assert_redirected_to private_login_path
   end
-
-  test "should get edit" do
-    get private_users_edit_url
-    assert_response :success
+  
+  test "need log in to see users index" do
+    get private_users_path
+    assert_not flash.empty?
+    assert_redirected_to private_login_path
   end
-
+  
+  test "need log in to edit user" do
+    get edit_private_user_path(@first)
+    assert_not flash.empty?
+    assert_redirected_to private_login_path
+  end
+  
+  test "need log in to patch user" do
+    patch private_user_path(@first), params: {
+      user: { name: @first.name, email: @first.email }}
+    assert_not flash.empty?
+    assert_redirected_to private_login_path
+  end
+  
+  test "need access right to see user" do
+    log_in_as(@second)
+    get private_user_path(@first)
+    assert_not flash.empty?
+    assert_redirected_to @second
+  end
+  
+  test "need access right to edit user" do
+    log_in_as(@second)
+    get edit_private_user_path(@first)
+    assert_not flash.empty?
+    assert_redirected_to @second
+  end
+  
+  test "need access right to patch user" do
+    log_in_as(@second)
+    patch private_user_path(@first), params: {
+      user: { name: @first.name, email: @first.email }}
+    assert_not flash.empty?
+    assert_redirected_to @second
+  end
 end

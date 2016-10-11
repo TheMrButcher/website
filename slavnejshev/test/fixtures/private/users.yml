@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
-  password_digest: MyString
+admin:
+  name: admin
+  email: admin@mail.ru
+  password_digest: <%= Private::User.digest('password') %>
+  
+first:
+  name: first
+  email: first@mail.ru
+  password_digest: <%= Private::User.digest('password') %>
 
-two:
-  name: MyString
-  email: MyString
-  password_digest: MyString
+second:
+  name: second
+  email: second@mail.ru
+  password_digest: <%= Private::User.digest('password') %>

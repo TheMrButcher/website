@@ -5,4 +5,10 @@ class Private::User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 8, maximum: 30 }
   
   has_secure_password
+  
+  def self.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
 end
