@@ -131,6 +131,7 @@ namespace :deploy do
   after :foreman_init, 'foreman:start'
   after :finishing, 'deploy:cleanup'
   after :cleanup, 'deploy:restart'
+  before 'deploy:assets:precompile', 'deploy:symlink_shared'
   before :migrating, 'deploy:symlink_shared'
 end
   
