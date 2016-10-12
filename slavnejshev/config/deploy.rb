@@ -75,7 +75,7 @@ namespace :deploy do
   end
 
   desc 'Create symlink'
-  task :symlink do
+  task :symlink_shared do
     on roles(:all) do
       execute "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
       execute "ln -s #{shared_path}/config/secrets.yml #{release_path}/config/secrets.yml"
@@ -123,14 +123,15 @@ namespace :deploy do
   before :setup, 'deploy:starting'
   before :setup, 'deploy:updating'
   before :setup, 'bundler:install'
-  after :setup, 'deploy:symlink'
+  after :setup, 'deploy:symlink_shared'
+  before :create_db, 'deploy:symlink_shared'
   after :setup, 'deploy:create_db'
   before :foreman_init, 'rvm:hook'
   after :setup, 'deploy:foreman_init'
   after :foreman_init, 'foreman:start'
   after :finishing, 'deploy:cleanup'
   after :cleanup, 'deploy:restart'
-  before :migrating, 'deploy:symlink'
+  before :migrating, 'deploy:symlink_shared'
 end
   
 before :deploy, 'git:deploy'
