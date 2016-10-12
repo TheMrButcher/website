@@ -5,6 +5,7 @@ set :repo_url, 'https://github.com/TheMrButcher/website.git'
 set :repo_tree, 'slavnejshev'
 set :application, 'slavnejshev'
 application = 'slavnejshev'
+
 set :rvm_type, :user
 set :rvm_ruby_version, '2.3.1'
 set :deploy_to, '/var/www/apps/slavnejshev'
