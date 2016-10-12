@@ -5,7 +5,7 @@ class Private::UsersController < ApplicationController
   before_action :correct_user, only: [:show, :edit, :update]
   
   def show
-    @user = User.find_by(id: params[:id])
+    @user = find_user
   end
 
   def index
@@ -26,10 +26,14 @@ class Private::UsersController < ApplicationController
     end
     
     def correct_user
-      @user = User.find(params[:id])
+      @user = find_user
       unless current_user?(@user)
         flash[:danger] = t(:access_denied)
         redirect_to current_user
       end
+    end
+    
+    def find_user
+      User.friendly.find(params[:id])
     end
 end

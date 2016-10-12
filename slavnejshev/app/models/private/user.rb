@@ -1,7 +1,13 @@
 class Private::User < ApplicationRecord
-  validates :name, presence: true, length: { maximum: 30 }
+  extend FriendlyId
+  friendly_id :name, use: [:finders]
+  
+  VALID_NAME = /\A[a-z0-9]+\z/i
+  validates :name, presence: true, length: { maximum: 30 }, format: { with: VALID_NAME }
+  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
+  
   validates :password, presence: true, length: { minimum: 8, maximum: 30 }
   
   has_secure_password
