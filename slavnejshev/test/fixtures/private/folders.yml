@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first_root:
+  name: root1
+  owner_id: first
+  
+first_child:
+  name: child
+  owner_id: first
+  parent_id: first_root
+
+first_grandchild:
+  name: grandchild
+  owner_id: first
+  parent_id: child
+  
+<% 5.times do |n| %>
+first_folder_<%= n %>:
+  name: folder_<%= n %>
+  owner_id: first
+  parent_id: first_root
+<% end %>
+
+second_root:
+  name: root2
+  owner_id: second
+
+<% 10.times do |n| %>
+second_folder_<%= n %>:
+  name: folder_<%= n %>
+  owner_id: second
+  parent_id: second_root
+<% end %>

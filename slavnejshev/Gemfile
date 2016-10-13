@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'friendly_id', '~> 5.1.0'
+gem 'acts_as_tree', '~> 2.4'
 
 gem 'foreman'
 gem 'nokogiri'

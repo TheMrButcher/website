@@ -10,6 +10,8 @@ class Private::User < ApplicationRecord
   
   validates :password, presence: true, length: { minimum: 8, maximum: 30 }
   
+  has_many :folders
+  
   has_secure_password
   
   def self.digest(string)

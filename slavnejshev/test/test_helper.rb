@@ -10,9 +10,8 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
-  
-  def log_in_as(user, password: 'password')
+  def log_in_as(user)
     post private_login_path, params: {
-      session: { name: user.name, password: password } }
+      session: { name: user.name, password: 'password' } }
   end
 end
