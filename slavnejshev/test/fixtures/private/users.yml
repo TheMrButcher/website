@@ -4,6 +4,7 @@ admin:
   name: admin
   email: admin@mail.ru
   password_digest: <%= Private::User.digest('password') %>
+  admin: true
   
 first:
   name: first

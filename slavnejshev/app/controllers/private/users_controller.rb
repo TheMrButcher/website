@@ -2,7 +2,9 @@ class Private::UsersController < ApplicationController
   include Private::SessionsHelper
   
   before_action :logged_in_user
-  before_action :correct_user, only: [:show, :edit, :update]
+  before_action :admin_or_correct_user, only: [:show]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: [:index]
   
   def show
     @user = find_user
@@ -30,6 +32,19 @@ class Private::UsersController < ApplicationController
       unless current_user?(@user)
         flash[:danger] = t(:access_denied)
         redirect_to current_user
+      end
+    end
+    
+    def admin_user
+      unless current_admin?
+        flash[:danger] = t(:access_denied)
+        redirect_to current_user
+      end
+    end
+    
+    def admin_or_correct_user
+      unless current_admin?
+        correct_user
       end
     end
     

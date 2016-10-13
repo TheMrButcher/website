@@ -39,6 +39,13 @@ class Private::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to @second
   end
   
+  test "need access right to see users index" do
+    log_in_as(@second)
+    get private_users_path
+    assert_not flash.empty?
+    assert_redirected_to @second
+  end
+  
   test "need access right to edit user" do
     log_in_as(@second)
     get edit_private_user_path(@first)
@@ -52,5 +59,18 @@ class Private::UsersControllerTest < ActionDispatch::IntegrationTest
       user: { name: @first.name, email: @first.email }}
     assert_not flash.empty?
     assert_redirected_to @second
+  end
+  
+  test "admin can see any user" do
+    log_in_as(@admin)
+    get private_user_path(@first)
+    assert_match @first.name, response.body
+    assert_match @first.email, response.body
+  end
+  
+  test "admin can see users index" do
+    log_in_as(@admin)
+    get private_users_path
+    assert_template 'private/users/index'
   end
 end
