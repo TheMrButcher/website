@@ -1,8 +1,14 @@
 en:
+  created_user: "Successfully created new user."
+  
   logging_in_required: "Please log in first."
   access_denied: "You don't have rights to see this content."
+  wrong_user_params: "Can't create user with such params."
   
   name_label: "Name:"
+  email_label: "Email:"
   password_label: "Password:"
+  password_confirmation_label: "Password confirmation:"
   submit_session: "Log in"
+  submit_user: "Add user"
   bad_name_password_pair: "Wrong name/password pair."
