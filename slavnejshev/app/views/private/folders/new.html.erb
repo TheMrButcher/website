@@ -1,0 +1,9 @@
+<%= form_for(@folder) do |f| %>
+  <%= f.label :name, t(:folder_name_label) %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :owner, t(:owner_name_label) %>
+  <%= f.text_field :owner %>
+  
+  <%= f.submit t(:submit_folder) %>
+<% end %>

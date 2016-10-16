@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013082403) do
+ActiveRecord::Schema.define(version: 20161016163626) do
 
   create_table "private_folders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20161013082403) do
     t.integer  "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["full_path"], name: "index_private_folders_on_full_path", unique: true, using: :btree
+    t.index ["parent_id"], name: "index_private_folders_on_parent_id", using: :btree
   end
 
   create_table "private_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

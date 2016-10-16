@@ -2,32 +2,38 @@
 
 first_root:
   name: root1
-  owner_id: first
+  full_path: root1
+  owner: first
   
 first_child:
   name: child
-  owner_id: first
-  parent_id: first_root
+  full_path: root1/child
+  owner: first
+  parent: first_root
 
 first_grandchild:
   name: grandchild
-  owner_id: first
-  parent_id: child
+  full_path: root1/child/grandchild
+  owner: first
+  parent: first_child
   
 <% 5.times do |n| %>
 first_folder_<%= n %>:
   name: folder_<%= n %>
-  owner_id: first
-  parent_id: first_root
+  full_path: root1/folder_<%= n %>
+  owner: first
+  parent: first_root
 <% end %>
 
 second_root:
   name: root2
-  owner_id: second
+  full_path: root2
+  owner: second
 
 <% 10.times do |n| %>
 second_folder_<%= n %>:
   name: folder_<%= n %>
-  owner_id: second
-  parent_id: second_root
+  full_path: root2/folder_<%= n %>
+  owner: second
+  parent: second_root
 <% end %>

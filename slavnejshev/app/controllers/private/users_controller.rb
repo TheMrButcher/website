@@ -36,23 +36,9 @@ class Private::UsersController < ApplicationController
   end
   
   private
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = t(:logging_in_required)
-        redirect_to private_login_path
-      end
-    end
-    
     def correct_user
       @user = find_user
       unless current_user?(@user)
-        flash[:danger] = t(:access_denied)
-        redirect_to current_user
-      end
-    end
-    
-    def admin_user
-      unless current_admin?
         flash[:danger] = t(:access_denied)
         redirect_to current_user
       end

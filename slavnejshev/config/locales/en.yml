@@ -1,9 +1,12 @@
 en:
   created_user: "Successfully created new user."
+  created_folder: "Successfully created new folder."
   
+  no_such_user: "No such user."
   logging_in_required: "Please log in first."
   access_denied: "You don't have rights to see this content."
   wrong_user_params: "Can't create user with such params."
+  wrong_folder_params: "Can't create folder with such params."
   
   name_label: "Name:"
   email_label: "Email:"
@@ -12,3 +15,11 @@ en:
   submit_session: "Log in"
   submit_user: "Add user"
   bad_name_password_pair: "Wrong name/password pair."
+  
+  folder_name_label: "Folder name:"
+  owner_name_label: "Owner:"
+  submit_folder: "Add root folder"
+  submit_subfolder: "Add subfolder"
+  
+  subfolders_num: "Number of subfolders:"
+  root_folders_num: "Number of root folders:"

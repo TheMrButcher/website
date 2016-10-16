@@ -2,8 +2,12 @@ class Private::User < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: [:finders]
   
-  VALID_NAME = /\A[a-z0-9]+\z/i
-  validates :name, presence: true, length: { maximum: 30 }, format: { with: VALID_NAME }
+  VALID_NAME = /\A[a-z0-9_]+\z/i
+  validates :name,
+    presence: true,
+    length: { maximum: 30 },
+    format: { with: VALID_NAME },
+    uniqueness: true
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
