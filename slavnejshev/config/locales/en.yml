@@ -18,6 +18,7 @@ en:
   
   folder_name_label: "Folder name:"
   owner_name_label: "Owner:"
+  public_folder_label: "Public folder:"
   submit_folder: "Add root folder"
   submit_subfolder: "Add subfolder"
   

@@ -1,9 +1,9 @@
 class Private::FoldersController < ApplicationController
   include Private::SessionsHelper
   
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:new, :index, :create]
   before_action :admin_user, only: [:new, :index]
-  before_action :admin_or_owner, only: [:show]
+  before_action :has_right_to_see, only: [:show]
   before_action :has_right_to_create, only: [:create]
   
   def new
@@ -18,10 +18,15 @@ class Private::FoldersController < ApplicationController
       redirect_to_parent_or private_roots_new_path
       return
     end
+    public = false
+    if !!params[:private_folder][:public]
+      public = params[:private_folder][:public] == '1'
+    end
     @folder = Folder.new(
       name: params[:private_folder][:name],
       parent_id: params[:private_folder][:parent_id],
-      owner_id: owner.id)
+      owner_id: owner.id,
+      public: public)
     if @folder.save
       flash[:success] = t(:created_folder)
       redirect_to_parent_or private_roots_path
@@ -40,9 +45,15 @@ class Private::FoldersController < ApplicationController
   end
   
   private
-    def admin_or_owner
+    def has_right_to_see
       @folder = Folder.find_by(full_path: params[:id])
-      admin_or_owner_of(@folder)
+      unless @folder.nil? || @folder.public?
+        if logged_in?
+          admin_or_owner_of(@folder)          
+        else
+          require_logging_in
+        end
+      end
     end
     
     def has_right_to_create

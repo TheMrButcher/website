@@ -13,7 +13,7 @@ class Private::FoldersRelationsTest < ActionDispatch::IntegrationTest
     get private_files_path(@first_root)
     assert_template 'private/folders/show'
     assert_select 'a[href=?]', private_files_path(@first_child)
-    assert_equal @first_root.children.count, 6
+    assert_equal @first_root.children.count, 7
     @first_root.children.each do |child|
       assert_select 'a[href=?]', private_files_path(child)
     end

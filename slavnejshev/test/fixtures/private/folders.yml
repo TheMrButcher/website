@@ -17,6 +17,13 @@ first_grandchild:
   owner: first
   parent: first_child
   
+first_public_child:
+  name: pub_child
+  full_path: root1/pub_child
+  owner: first
+  parent: first_root
+  public: true
+  
 <% 5.times do |n| %>
 first_folder_<%= n %>:
   name: folder_<%= n %>
@@ -37,3 +44,16 @@ second_folder_<%= n %>:
   owner: second
   parent: second_root
 <% end %>
+
+public_root:
+  name: pub_root
+  full_path: pub_root
+  owner: first
+  public: true
+  
+public_child:
+  name: child
+  full_path: pub_root/child
+  owner: first
+  parent: public_root
+  public: true

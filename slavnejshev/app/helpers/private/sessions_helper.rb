@@ -24,9 +24,13 @@ module Private::SessionsHelper
   
   def logged_in_user
     unless logged_in?
-      flash[:danger] = t(:logging_in_required)
-      redirect_to private_login_path
+      require_logging_in      
     end
+  end
+  
+  def require_logging_in
+    flash[:danger] = t(:logging_in_required)
+    redirect_to private_login_path
   end
     
   def admin_user

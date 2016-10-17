@@ -5,5 +5,8 @@
   <%= f.label :owner, t(:owner_name_label) %>
   <%= f.text_field :owner %>
   
+  <%= f.label :public, t(:public_folder_label) %>
+  <%= f.check_box :public %>
+  
   <%= f.submit t(:submit_folder) %>
 <% end %>

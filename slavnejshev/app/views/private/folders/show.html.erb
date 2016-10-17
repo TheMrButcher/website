@@ -1,8 +1,11 @@
-<p><%= @folder.name %></p>
+<p><%= @folder.full_path %></p>
+<p><%= t(:owner_name_label) + " " + @folder.owner.name %></p>
+<p><%= t(:public_folder_label) + " " + @folder.public?.to_s %></p>
 
 <%= form_for(:private_folder, url: private_folders_path) do |f| %>
   <%= f.hidden_field :owner, value: @folder.owner.name %>
   <%= f.hidden_field :parent_id, value: @folder.id %>
+  <%= f.hidden_field :public, value: (@folder.public? ? '1' : '0') %>
 
   <%= f.label :name, t(:folder_name_label) %>
   <%= f.text_field :name %>
