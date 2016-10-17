@@ -1,2 +1,6 @@
-<p><%= @user.name %></p>
-<p><%= @user.email %></p>
+<p><%= t(:name_label) + " " + @user.name %></p>
+<p><%= t(:email_label) + " " + @user.email %></p>
+
+<% @user.folders.roots.each do |folder| %>
+  <p><%= link_to folder.name, private_files_path(folder) %></p>
+<% end %>

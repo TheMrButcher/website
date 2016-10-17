@@ -10,7 +10,7 @@ class Private::Folder < ApplicationRecord
     uniqueness: true
   
   validates :owner_id, presence: true
-  belongs_to :owner, class_name: "Private::User"
+  belongs_to :owner, class_name: "Private::User", foreign_key: "owner_id"
   
   before_validation :make_full_path
   

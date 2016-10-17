@@ -11,22 +11,9 @@ class Private::FoldersController < ApplicationController
   end
   
   def create
-    @parent = Folder.find_by(id: params[:private_folder][:parent_id])
-    owner = User.find_by(name: params[:private_folder][:owner])
-    if owner.nil?
-      flash[:danger] = t(:no_such_user)
-      redirect_to_parent_or private_roots_new_path
-      return
-    end
-    public = false
-    if !!params[:private_folder][:public]
-      public = params[:private_folder][:public] == '1'
-    end
-    @folder = Folder.new(
-      name: params[:private_folder][:name],
-      parent_id: params[:private_folder][:parent_id],
-      owner_id: owner.id,
-      public: public)
+    folder_params = params.require(:private_folder).permit(:name, :parent_id, :public, :stores_panoramas)
+    @folder = Folder.new(folder_params)
+    @folder.owner = User.find_by(name: params[:private_folder][:owner])
     if @folder.save
       flash[:success] = t(:created_folder)
       redirect_to_parent_or private_roots_path

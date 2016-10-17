@@ -14,7 +14,7 @@ class Private::User < ApplicationRecord
   
   validates :password, presence: true, length: { minimum: 8, maximum: 30 }
   
-  has_many :folders
+  has_many :folders, foreign_key: "owner_id"
   
   has_secure_password
   

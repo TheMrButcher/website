@@ -19,6 +19,7 @@ en:
   folder_name_label: "Folder name:"
   owner_name_label: "Owner:"
   public_folder_label: "Public folder:"
+  panorama_folder_label: "Can store panoramas:"
   submit_folder: "Add root folder"
   submit_subfolder: "Add subfolder"
   

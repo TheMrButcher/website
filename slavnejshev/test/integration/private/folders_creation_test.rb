@@ -28,6 +28,26 @@ class Private::FoldersCreationTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
   
+  test 'blank root owner' do
+    log_in_as(@admin)
+    assert_no_difference 'Private::Folder.count' do
+      post private_folders_path params: {
+        private_folder: { name: 'new_root', owner: ' ' * 3 } }      
+    end
+    assert_redirected_to private_roots_new_path
+    assert_not flash.empty?
+  end
+  
+  test 'wrong root owner' do
+    log_in_as(@admin)
+    assert_no_difference 'Private::Folder.count' do
+      post private_folders_path params: {
+        private_folder: { name: 'new_root', owner: 'abc' } }      
+    end
+    assert_redirected_to private_roots_new_path
+    assert_not flash.empty?
+  end
+  
   test 'valid root creation' do
     log_in_as(@admin)
     name = 'new_root'

@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016212257) do
+ActiveRecord::Schema.define(version: 20161017193227) do
 
   create_table "private_folders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "parent_id"
     t.string   "full_path"
     t.integer  "owner_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "public",     default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "public",           default: false
+    t.boolean  "stores_panoramas", default: false
     t.index ["full_path"], name: "index_private_folders_on_full_path", unique: true, using: :btree
     t.index ["parent_id"], name: "index_private_folders_on_parent_id", using: :btree
   end

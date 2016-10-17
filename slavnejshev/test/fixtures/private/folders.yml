@@ -57,3 +57,10 @@ public_child:
   owner: first
   parent: public_root
   public: true
+  
+pano_root:
+  name: pano_root
+  full_path: pano_root
+  owner: first
+  stores_panoramas: true
+
