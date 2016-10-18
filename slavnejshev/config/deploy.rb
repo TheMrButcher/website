@@ -11,6 +11,8 @@ set :rvm_ruby_version, '2.3.1'
 set :deploy_to, '/var/www/apps/slavnejshev'
 set :bundle_flags, '--quiet'
 
+set :linked_dirs, %w{storage}
+
 namespace :foreman do
   desc 'Start server'
   task :start do
