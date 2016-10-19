@@ -4,6 +4,7 @@ class Private::FolderTest < ActiveSupport::TestCase
   def setup
     @first = private_users(:first)
     @root = Private::Folder.new(name: "root", owner_id: @first.id)
+    @root.update_paths
     @child = @root.children.new(name: "child", owner_id: @first.id)
   end
   
