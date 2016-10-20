@@ -34,13 +34,7 @@ class Private::FoldersController < ApplicationController
   private
     def has_right_to_see
       @folder = Folder.find_by(full_path: params[:id])
-      unless @folder.nil? || @folder.public?
-        if logged_in?
-          admin_or_owner_of(@folder)          
-        else
-          require_logging_in
-        end
-      end
+      check_right_to_see(@folder)
     end
     
     def has_right_to_create
@@ -57,17 +51,7 @@ class Private::FoldersController < ApplicationController
       end
     end
     
-    def admin_or_owner_of(folder)
-      unless folder.nil? || current_user?(folder.owner)
-        admin_user
-      end
-    end
-  
     def redirect_to_parent_or(path)
-      if @parent.nil?
-        redirect_to path
-      else
-        redirect_to private_files_path(@parent)
-      end
+      redirect_to_folder_or(@parent, path)
     end
 end

@@ -39,4 +39,28 @@ module Private::SessionsHelper
       redirect_to current_user
     end
   end
+  
+  def check_right_to_see(obj)
+    unless obj.nil? || obj.public?
+      if logged_in?
+        admin_or_owner_of(obj)          
+      else
+        require_logging_in
+      end
+    end
+  end
+  
+  def admin_or_owner_of(folder)
+    unless folder.nil? || current_user?(folder.owner)
+      admin_user
+    end
+  end
+  
+  def redirect_to_folder_or(folder, path)
+    if folder.nil?
+      redirect_to path
+    else
+      redirect_to private_files_path(folder)
+    end
+  end
 end

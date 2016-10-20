@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
-  folder_id: 1
-  full_path: MyString
+private_pano:
+  name: private_pano
+  description: This is private pano
+  folder: pano_root
+  full_path: pano_root/private_pano
 
-two:
-  name: MyString
-  description: MyText
-  folder_id: 1
-  full_path: MyString
+public_pano:
+  name: public_pano
+  description: This is public pano
+  folder: pano_pub_child
+  full_path: pano_root/pano_pub_child/public_pano

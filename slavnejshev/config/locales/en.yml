@@ -1,12 +1,14 @@
 en:
   created_user: "Successfully created new user."
   created_folder: "Successfully created new folder."
+  created_panorama: "Successfully created new panorama."
   
   no_such_user: "No such user."
   logging_in_required: "Please log in first."
   access_denied: "You don't have rights to see this content."
   wrong_user_params: "Can't create user with such params."
   wrong_folder_params: "Can't create folder with such params."
+  wrong_panorama_params: "Can't create panorama with such params."
   
   name_label: "Name:"
   email_label: "Email:"
@@ -18,6 +20,9 @@ en:
   
   folder_name_label: "Folder name:"
   owner_name_label: "Owner:"
+  status_label: "Status:"
+  public_status_label: "public"
+  private_status_label: "private"
   public_folder_label: "Public folder:"
   panorama_folder_label: "Can store panoramas:"
   submit_folder: "Add root folder"
@@ -25,3 +30,6 @@ en:
   
   subfolders_num: "Number of subfolders:"
   root_folders_num: "Number of root folders:"
+  
+  panorama_name_label: "Panorama name:"
+  submit_panorama: "Add panorama"

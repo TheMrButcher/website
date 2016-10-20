@@ -26,6 +26,10 @@ class Private::Panorama < ApplicationRecord
     make_full_path
   end
   
+  def public?
+    folder.public?
+  end
+  
   private
     def make_full_path
       unless folder_id.nil?

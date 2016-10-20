@@ -1,0 +1,3 @@
+<p><%= @panorama.full_path %></p>
+<p><%= t(:owner_name_label) + " " + @panorama.owner.name %></p>
+<p><%= t(:status_label) + " " + (@panorama.public? ? t(:public_status_label) : t(:private_status_label)) %></p>

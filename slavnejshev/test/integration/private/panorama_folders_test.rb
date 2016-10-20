@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PanoramaFoldersTest < ActionDispatch::IntegrationTest
+class Private::PanoramaFoldersTest < ActionDispatch::IntegrationTest
   def setup
     @admin = private_users(:admin)
     @first = private_users(:first)

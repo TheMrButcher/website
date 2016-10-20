@@ -64,3 +64,11 @@ pano_root:
   owner: first
   stores_panoramas: true
 
+pano_pub_child:
+  name: pub_child
+  full_path: pano_root/pub_child
+  owner: first
+  parent: pano_root
+  public: true
+  stores_panoramas: true
+
