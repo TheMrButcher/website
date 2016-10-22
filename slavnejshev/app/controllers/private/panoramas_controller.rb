@@ -7,6 +7,14 @@ class Private::PanoramasController < ApplicationController
   before_action :has_right_to_create, only: [:create]
   
   def show
+    version_index = params[:version]
+    if version_index.nil?
+      unless @panorama.versions.empty?
+        @version = @panorama.versions.last
+      end
+    else
+      @version = @panorama.versions.find_by(idx: version_index)
+    end 
   end
   
   def create
@@ -33,13 +41,6 @@ class Private::PanoramasController < ApplicationController
     
     def has_right_to_create
       @folder = Folder.find_by(id: params[:private_panorama][:folder_id])
-      unless @folder.nil?
-        if @folder.stores_panoramas?
-          admin_or_owner_of(@folder)
-        else
-          flash[:danger] = t(:access_denied)
-          redirect_to private_files_path(@folder)
-        end
-      end
+      has_right_to_change_files_in(@folder)
     end
 end

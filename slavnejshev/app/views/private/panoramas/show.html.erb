@@ -1,3 +1,20 @@
 <p><%= @panorama.full_path %></p>
+
+<p><%= t(:description_label) + " " + (@panorama.description.nil? ? t(:empty_description) : @panorama.description) %></p>
 <p><%= t(:owner_name_label) + " " + @panorama.owner.name %></p>
 <p><%= t(:status_label) + " " + (@panorama.public? ? t(:public_status_label) : t(:private_status_label)) %></p>
+
+<p><%= t(:pano_versions) %></p>
+
+<% unless @version.nil? %>
+  <p><%= t(:version_label) + " " + @version.idx.to_s %></p>
+  <p><%= t(:description_label) + " " + (@version.description.nil? ? t(:empty_description) : @version.description) %></p>
+<% end %>
+
+<%= form_for(:private_pano_version, url: private_panorama_pano_versions_path(@panorama.id)) do |f| %>
+  <%= f.submit t(:submit_pano_version) %>
+<% end %>
+
+<% @panorama.versions.each do |version| %>
+  <p><%= link_to version.idx, private_show_pano_version_path(@panorama, version.idx) %></p>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020094404) do
+ActiveRecord::Schema.define(version: 20161022100052) do
 
   create_table "private_folders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20161020094404) do
     t.index ["parent_id"], name: "index_private_folders_on_parent_id", using: :btree
   end
 
+  create_table "private_pano_versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "description", limit: 65535
+    t.integer  "panorama_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "idx"
+    t.index ["idx"], name: "index_private_pano_versions_on_idx", using: :btree
+    t.index ["panorama_id", "idx"], name: "index_private_pano_versions_on_panorama_id_and_idx", unique: true, using: :btree
+    t.index ["panorama_id"], name: "index_private_pano_versions_on_panorama_id", using: :btree
+  end
+
   create_table "private_panoramas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.text     "description", limit: 65535
@@ -32,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161020094404) do
     t.string   "full_path"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.index ["folder_id"], name: "index_private_panoramas_on_folder_id", using: :btree
     t.index ["full_path"], name: "index_private_panoramas_on_full_path", unique: true, using: :btree
   end
 

@@ -32,4 +32,9 @@ en:
   root_folders_num: "Number of root folders:"
   
   panorama_name_label: "Panorama name:"
+  pano_versions: "Panorama versions:"
+  version_label: "Version:"
+  description_label: "Description:"
+  empty_description: "none"
   submit_panorama: "Add panorama"
+  submit_pano_version: "Add version"

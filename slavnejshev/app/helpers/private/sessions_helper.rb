@@ -63,4 +63,15 @@ module Private::SessionsHelper
       redirect_to private_files_path(folder)
     end
   end
+  
+  def has_right_to_change_files_in(folder)
+    unless folder.nil?
+      if folder.stores_panoramas?
+        admin_or_owner_of(folder)
+      else
+        flash[:danger] = t(:access_denied)
+        redirect_to private_files_path(folder)
+      end
+    end
+  end
 end
