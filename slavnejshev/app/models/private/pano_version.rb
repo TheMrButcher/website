@@ -6,6 +6,8 @@ class Private::PanoVersion < ApplicationRecord
   
   validates :description,
     length: { maximum: 1000 }
+    
+  belongs_to :config, class_name: "Private::File"
   
   belongs_to :panorama
 end

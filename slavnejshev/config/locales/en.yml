@@ -38,3 +38,6 @@ en:
   empty_description: "none"
   submit_panorama: "Add panorama"
   submit_pano_version: "Add version"
+  submit_pano_config: "Upload config"
+  version_has_config: "Configuration file: loaded"
+

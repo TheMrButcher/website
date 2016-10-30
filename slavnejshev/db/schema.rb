@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022100052) do
+ActiveRecord::Schema.define(version: 20161026074235) do
+
+  create_table "private_data", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "path"
+    t.string   "datum_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["datum_hash"], name: "index_private_data_on_datum_hash", unique: true, using: :btree
+    t.index ["path"], name: "index_private_data_on_path", unique: true, using: :btree
+  end
+
+  create_table "private_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "original_name"
+    t.string   "key"
+    t.integer  "datum_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["datum_id"], name: "index_private_files_on_datum_id", using: :btree
+    t.index ["key"], name: "index_private_files_on_key", unique: true, using: :btree
+  end
 
   create_table "private_folders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -31,6 +50,7 @@ ActiveRecord::Schema.define(version: 20161022100052) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "idx"
+    t.integer  "config_id"
     t.index ["idx"], name: "index_private_pano_versions_on_idx", using: :btree
     t.index ["panorama_id", "idx"], name: "index_private_pano_versions_on_panorama_id_and_idx", unique: true, using: :btree
     t.index ["panorama_id"], name: "index_private_pano_versions_on_panorama_id", using: :btree

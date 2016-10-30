@@ -6,6 +6,7 @@ class Private::PanoVersionTest < ActiveSupport::TestCase
     @pano_v1 = private_pano_versions(:first_pano_version)
     @pano_v2 = private_pano_versions(:second_pano_version)
     @other_pano = private_panoramas(:public_pano)
+    @config = private_files(:first_pano_config)
   end
   
   test "panorama versions are valid" do
@@ -19,6 +20,7 @@ class Private::PanoVersionTest < ActiveSupport::TestCase
     assert_includes @pano.versions, @pano_v2
     assert_equal @pano, @pano_v1.panorama
     assert_equal @pano, @pano_v2.panorama
+    assert_equal @config, @pano_v1.config
   end
   
   test "empty version text is valid" do
@@ -55,5 +57,15 @@ class Private::PanoVersionTest < ActiveSupport::TestCase
     other_pano_version = @other_pano.versions.build(idx: @pano_v1.idx)
     assert other_pano_version.valid?
     assert other_pano_version.save
+  end
+  
+  test "versions can have same config" do
+    @pano_v1.config_id = @pano_v2.config_id
+    assert @pano_v1.valid?
+  end
+  
+  test "version can be missig config" do
+    @pano_v1.config_id = nil
+    assert @pano_v1.valid?
   end
 end

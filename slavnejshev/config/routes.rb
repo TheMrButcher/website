@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     resources :panoramas, only: [:create]
     
     resources :panoramas do
-      resources :pano_versions, only: [:create]      
+      resources :pano_versions, only: [:create]
     end
+    resources :pano_versions, only: [:update]
     
     get 'roots', to: 'folders#index'
     get 'roots/new', to: 'folders#new'

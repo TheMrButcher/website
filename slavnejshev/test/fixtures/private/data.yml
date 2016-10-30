@@ -1,0 +1,7 @@
+first_pano_config_datum:
+  path: storage/pano/abc
+  datum_hash: abc
+
+second_pano_config_datum:
+  path: storage/pano/def
+  datum_hash: def

@@ -1,11 +1,21 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 first_pano_version:
   idx: 1
   description: First version
   panorama: private_pano
+  config: first_pano_config
 
 second_pano_version:
   idx: 2
   description: Second version
   panorama: private_pano
+  config: second_pano_config
+  
+first_pub_pano_version:
+  idx: 2
+  description: First version
+  panorama: public_pano
+
+second_pub_pano_version:
+  idx: 3
+  description: Second version
+  panorama: public_pano
