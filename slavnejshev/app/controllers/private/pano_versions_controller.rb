@@ -32,7 +32,8 @@ class Private::PanoVersionsController < ApplicationController
         end
       end
       config_key = "pano/" + @pano_version.id.to_s + "/" + config_name
-      config = datum.files.create(original_name: config_name, key: config_key)
+      config = datum.files.create(
+        original_name: config_name, key: config_key, storage: @pano_version, file_type: :pano_config)
       @pano_version.update_attributes(config: config)
     end
     redirect_to private_show_pano_version_path(@panorama, @pano_version.idx)

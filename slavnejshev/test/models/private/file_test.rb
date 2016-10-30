@@ -49,4 +49,18 @@ class Private::FileTest < ActiveSupport::TestCase
     @file.datum_id = @file2.datum_id
     assert @file.valid?
   end
+  
+  test 'file should have type' do
+    @file.file_type = nil
+    assert_not @file.valid?
+  end
+  
+  test 'file can have any valid type' do
+    @file.ordinary!
+    assert @file.valid?
+    assert_equal @file.file_type, "ordinary"
+    @file.pano_config!
+    assert @file.valid?
+    assert_equal @file.file_type, "pano_config"
+  end
 end

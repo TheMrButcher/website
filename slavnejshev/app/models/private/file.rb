@@ -7,7 +7,11 @@ class Private::File < ApplicationRecord
     presence: true,
     length: { maximum: 1024 },
     uniqueness: true
+    
+  validates :file_type, presence: true
+  enum file_type: [ :ordinary, :pano_config, :pano_part, :pano_hotspot_image ]
   
   validates :datum_id, presence: true
   belongs_to :datum
+  belongs_to :storage, polymorphic: true
 end

@@ -58,14 +58,4 @@ class Private::PanoVersionTest < ActiveSupport::TestCase
     assert other_pano_version.valid?
     assert other_pano_version.save
   end
-  
-  test "versions can have same config" do
-    @pano_v1.config_id = @pano_v2.config_id
-    assert @pano_v1.valid?
-  end
-  
-  test "version can be missig config" do
-    @pano_v1.config_id = nil
-    assert @pano_v1.valid?
-  end
 end

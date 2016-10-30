@@ -2,8 +2,12 @@ first_pano_config:
   original_name: pano.xml
   key: pano/1/pano.xml
   datum: first_pano_config_datum
+  storage: first_pano_version (Private::PanoVersion)
+  file_type: pano_config
 
 second_pano_config:
   original_name: pano.xml
   key: pano/2/pano.xml
   datum: second_pano_config_datum
+  storage: second_pano_version (Private::PanoVersion)
+  file_type: pano_config
