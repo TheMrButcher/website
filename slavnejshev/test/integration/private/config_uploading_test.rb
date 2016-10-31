@@ -23,6 +23,12 @@ class Private::ConfigUploadingTest < ActionDispatch::IntegrationTest
     datum = @pano_v1.config.datum
     assert datum.datum_hash.present?
     assert datum.path.present?
+    
+    get private_show_datum_path(@pano_v1.config)
+    assert_response :success
+    assert_match 'panorama', response.body
+    assert_match '1', response.body
+    assert_match '/panorama', response.body
   end
   
   test 'duplicate config' do

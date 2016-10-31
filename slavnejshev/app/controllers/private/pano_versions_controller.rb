@@ -54,7 +54,7 @@ class Private::PanoVersionsController < ApplicationController
           end
           tile_key = "pano/" + @pano_version.id.to_s + "/" + entry.name
           config = datum.files.create(
-            original_name: archive_name, key: tile_key, storage: @pano_version, file_type: :pano_tile)
+            original_name: File.basename(entry.name), key: tile_key, storage: @pano_version, file_type: :pano_tile)
         end
       end
     end

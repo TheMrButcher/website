@@ -11,6 +11,10 @@ class Private::File < ApplicationRecord
   validates :file_type, presence: true
   enum file_type: [ :ordinary, :pano_config, :pano_tile, :pano_hotspot_image ]
   
+  def to_param
+    key
+  end
+  
   validates :datum_id, presence: true
   belongs_to :datum
   belongs_to :storage, polymorphic: true
