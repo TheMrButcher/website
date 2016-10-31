@@ -9,7 +9,7 @@ class Private::File < ApplicationRecord
     uniqueness: true
     
   validates :file_type, presence: true
-  enum file_type: [ :ordinary, :pano_config, :pano_part, :pano_hotspot_image ]
+  enum file_type: [ :ordinary, :pano_config, :pano_tile, :pano_hotspot_image ]
   
   validates :datum_id, presence: true
   belongs_to :datum

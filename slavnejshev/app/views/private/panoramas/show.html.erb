@@ -9,6 +9,7 @@
 <% unless @version.nil? %>
   <p><%= t(:version_label) + " " + @version.idx.to_s %></p>
   <p><%= t(:description_label) + " " + (@version.description.nil? ? t(:empty_description) : @version.description) %></p>
+  
   <% if @version.config.nil? %>
     <%= form_for(@version, html: { multipart: true }) do |f| %>
       <%= f.file_field :config %>
@@ -16,6 +17,15 @@
     <% end %>
   <% else %>
     <p><%= t(:version_has_config) %></p>
+  <% end %>
+  
+  <% if @version.tiles.empty? %>
+    <%= form_for(@version, html: { multipart: true }) do |f| %>
+      <%= f.file_field :tiles %>
+      <%= f.submit t(:submit_pano_tiles) %>
+    <% end %>
+  <% else %>
+    <p><%= t(:version_has_tiles) %></p>
   <% end %>
 <% end %>
 

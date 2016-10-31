@@ -8,6 +8,7 @@ class Private::PanoVersion < ApplicationRecord
     length: { maximum: 1000 }
     
   has_one :config, -> { where file_type: :pano_config }, as: :storage, class_name: 'Private::File'
+  has_many :tiles, -> { where file_type: :pano_tile }, as: :storage, class_name: 'Private::File'
   
   belongs_to :panorama
 end

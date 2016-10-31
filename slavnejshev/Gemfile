@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'rubyzip'
 gem 'friendly_id', '~> 5.1.0'
 gem 'acts_as_tree', '~> 2.4'
 

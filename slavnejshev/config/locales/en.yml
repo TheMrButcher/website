@@ -40,4 +40,6 @@ en:
   submit_pano_version: "Add version"
   submit_pano_config: "Upload config"
   version_has_config: "Configuration file: loaded"
+  submit_pano_tiles: "Upload panorama tiles"
+  version_has_tiles: "Panorama tiles: loaded"
 
