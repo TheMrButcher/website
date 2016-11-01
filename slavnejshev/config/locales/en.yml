@@ -31,6 +31,7 @@ en:
   subfolders_num: "Number of subfolders:"
   root_folders_num: "Number of root folders:"
   
+  back_to_folder: "Back to folder"
   panorama_name_label: "Panorama name:"
   pano_versions: "Panorama versions:"
   version_label: "Version:"

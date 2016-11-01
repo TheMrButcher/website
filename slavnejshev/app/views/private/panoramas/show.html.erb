@@ -1,4 +1,5 @@
 <p><%= @panorama.full_path %></p>
+<p><%= link_to t(:back_to_folder), private_files_path(@panorama.folder) %></p>
 
 <p><%= t(:description_label) + " " + (@panorama.description.nil? ? t(:empty_description) : @panorama.description) %></p>
 <p><%= t(:owner_name_label) + " " + @panorama.owner.name %></p>
@@ -26,6 +27,10 @@
     <% end %>
   <% else %>
     <p><%= t(:version_has_tiles) %></p>
+  <% end %>
+  
+  <% if !!@version.config && !@version.tiles.empty? %>
+    <div id="pano_container" style="width:800px;height:600px;" data-pano-config-path="<%= private_show_datum_path(@version.config) %>" ></div>
   <% end %>
 <% end %>
 

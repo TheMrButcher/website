@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+//= require pano2vr_player.js
+//= require pano2vr_skin.js
