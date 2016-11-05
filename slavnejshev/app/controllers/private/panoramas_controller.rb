@@ -1,4 +1,6 @@
 class Private::PanoramasController < ApplicationController
+  layout 'private/layout'
+  
   include Private::SessionsHelper
   Panorama = Private::Panorama
   

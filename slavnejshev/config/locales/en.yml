@@ -1,5 +1,7 @@
 en:
   title: "Website of Slavnejshev Filipp"
+  login: "Log in"
+  logout: "Log out"
   
   created_user: "Successfully created new user."
   created_folder: "Successfully created new folder."
@@ -41,6 +43,8 @@ en:
     folders:
       show:
         obj_name: "Folder"
+      
+      tools:
         subfolder_header_button: "Subfolders"
         subfolder_label: "Folder name:"
         submit_subfolder: "Add subfolder"

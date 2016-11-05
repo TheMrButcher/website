@@ -7,4 +7,8 @@ module ApplicationHelper
       page_title + " - " + base_title
     end
   end
+  
+  def private_namespace?
+    controller.class.parent.name == "Private"
+  end
 end

@@ -1,4 +1,6 @@
 class Private::SessionsController < ApplicationController
+  layout 'private/layout'
+  
   include Private::SessionsHelper
   
   def new
@@ -13,5 +15,10 @@ class Private::SessionsController < ApplicationController
       flash.now[:danger] = t(:bad_name_password_pair)
       render 'new'
     end
+  end
+  
+  def destroy
+    log_out
+    redirect_to private_login_path
   end
 end

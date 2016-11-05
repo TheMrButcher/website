@@ -1,6 +1,6 @@
-.obj-info-block {
+.main-header-block {
   padding: 1rem;
-  background-color: #dcdcec;
+  background-color: #dcf5fc;
   
   .obj-tags {
     @extend .text-xs-center;
@@ -10,7 +10,7 @@
   }
 }
 
-.obj-content-block {
+.main-content-block {
   padding: 1rem;
   background-color: #efefef;
 }

@@ -1,0 +1,16 @@
+<% content_for :content do %>
+  <div class="row">
+    <%= yield :on_block_top %>
+    <div class="col-md-10 offset-md-1">
+      <div class="main-header-block">
+        <h3 class="text-xs-center"><%= content_for?(:block_title) ? yield(:block_title) : yield(:title) %></h3>
+        <%= yield :block_header %>
+      </div>
+      <div class="main-content-block">
+        <%= yield :block_content %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: "layouts/application" %>

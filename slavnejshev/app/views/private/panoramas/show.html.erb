@@ -1,30 +1,32 @@
 <% provide(:title, pano_title(@panorama, @version) ) %>
+<% provide(:block_title, t('.obj_name') + ' "' + @panorama.name + '"') %>
 
-<div class="row">
+<% content_for :on_block_top do %>
   <div class="col-md-12">
     <%= render partial: 'shared/path', locals: { full_path: @panorama.full_path  } %>
   </div>
-  <div class="pano-block col-md-10 offset-md-1">
-    <div class="obj-info-block">
-      <h3 class="text-xs-center"><%= t('.obj_name') + ' "' + @panorama.name + '"' %></h3>
-      <%= render partial: 'shared/tags', locals: { obj: @panorama  } %>
-      <div class="obj-description">
-        <b><%= t(:description_label) %></b> <%= (@panorama.description.nil? ? t(:empty_description) : @panorama.description) %>
-      </div>
-    </div>
-    <div class="obj-content-block">
-      <div class="add-pano-version-form">
-        <%= form_for(:private_pano_version, url: private_panorama_pano_versions_path(@panorama.id)) do |f| %>
-          <%= f.submit t('.submit_version'), class: 'btn btn-primary btn-lg btn-block' %>
-        <% end %>
-      </div>
-      <% @panorama.versions.reverse_each do |version| %>
-        <% if version == @version %>
-          <%= render partial: 'private/pano_versions/active', locals: { version: version } %>
-        <% else %>
-          <%= render partial: 'private/pano_versions/other', locals: { version: version } %>
-        <% end %>
+<% end %>
+
+<% content_for :block_header do %>
+  <%= render partial: 'shared/tags', locals: { obj: @panorama  } %>
+  <div class="pano-description">
+    <b><%= t(:description_label) %></b> <%= (@panorama.description.nil? ? t(:empty_description) : @panorama.description) %>
+  </div>
+<% end %>
+
+<% content_for :block_content do %>
+  <% if admin_or_owner_of?(@panorama.folder) %>
+    <div class="add-pano-version-form">
+      <%= form_for(:private_pano_version, url: private_panorama_pano_versions_path(@panorama.id)) do |f| %>
+        <%= f.submit t('.submit_version'), class: 'btn btn-primary btn-lg btn-block' %>
       <% end %>
     </div>
-  </div>
-</div>
+  <% end %>
+  <% @panorama.versions.reverse_each do |version| %>
+    <% if version == @version %>
+      <%= render partial: 'private/pano_versions/active', locals: { version: version } %>
+    <% else %>
+      <%= render partial: 'private/pano_versions/other', locals: { version: version } %>
+    <% end %>
+  <% end %>
+<% end %>

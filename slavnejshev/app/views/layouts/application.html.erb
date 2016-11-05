@@ -10,11 +10,25 @@
   </head>
 
   <body>
-  	<% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
+    <nav class="navbar navbar-dark bg-inverse">
+      <a class="navbar-brand" href="#"><%= t(:title) %></a>
+      <ul class="nav navbar-nav">
+        <% if private_namespace? %>
+          <li class="nav-item">
+            <% if logged_in? %>
+              <%= link_to t(:logout), private_logout_path, method: :delete, class: 'nav-link' %>
+            <% else %>
+              <%= link_to t(:login), private_login_path, class: 'nav-link' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
     <div class="container">
-      <%= yield %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
   </body>
 </html>

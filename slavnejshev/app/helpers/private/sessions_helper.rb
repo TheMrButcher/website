@@ -28,6 +28,11 @@ module Private::SessionsHelper
     end
   end
   
+  def log_out
+    session.delete(:user_id)
+    @current_user = nil
+  end
+  
   def require_logging_in
     flash[:danger] = t(:logging_in_required)
     redirect_to private_login_path
@@ -43,11 +48,15 @@ module Private::SessionsHelper
   def check_right_to_see(obj)
     unless obj.nil? || obj.public?
       if logged_in?
-        admin_or_owner_of(obj)          
+        admin_or_owner_of(obj)
       else
         require_logging_in
       end
     end
+  end
+  
+  def admin_or_owner_of?(folder)
+    current_user?(folder.owner) || current_admin?
   end
   
   def admin_or_owner_of(folder)

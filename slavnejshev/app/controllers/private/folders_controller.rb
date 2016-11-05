@@ -1,4 +1,6 @@
 class Private::FoldersController < ApplicationController
+  layout 'private/layout'
+  
   include Private::SessionsHelper
   
   before_action :logged_in_user, only: [:new, :index, :create]
