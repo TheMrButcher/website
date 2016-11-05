@@ -17,6 +17,9 @@ class Private::PanoVersionsController < ApplicationController
   end
   
   def update
+    pano_version_params = params.require(:private_pano_version).permit(:description)
+    @pano_version.update_attributes(pano_version_params)
+    
     if @pano_version.config.nil? && params[:private_pano_version][:config].present?
       config_io = params[:private_pano_version][:config]
       config_datum = config_io.read

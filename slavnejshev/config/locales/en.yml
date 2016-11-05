@@ -38,6 +38,13 @@ en:
       public: "Public"
       private: "Private"
       panorama: "Panoramas"
+      
+    description:
+      description_label: "Description:"
+      empty_description: "none"
+      edit_description: "Edit"
+      suggest_write_description: "Please write description..."
+      submit_description: "Set description"
   
   private:
     folders:
@@ -79,7 +86,4 @@ en:
         no_config: "Config"
         has_tiles: "Tiles"
         no_tiles: "Tiles"
-        
-  description_label: "Description:"
-  empty_description: "none"
 

@@ -4,9 +4,10 @@ class Private::PanoramasController < ApplicationController
   include Private::SessionsHelper
   Panorama = Private::Panorama
   
-  before_action :logged_in_user, only: [:create]
+  before_action :logged_in_user, only: [:create, :update]
   before_action :has_right_to_see, only: [:show]
   before_action :has_right_to_create, only: [:create]
+  before_action :has_right_to_update, only: [:update]
   
   def show
     version_index = params[:version]
@@ -35,6 +36,12 @@ class Private::PanoramasController < ApplicationController
     end
   end
   
+  def update
+    panorama_params = params.require(:private_panorama).permit(:description)
+    @panorama.update_attributes(panorama_params)
+    redirect_to private_show_pano_path(@panorama) 
+  end
+  
   private
     def has_right_to_see
       @panorama = Panorama.find_by(full_path: params[:id])
@@ -44,5 +51,10 @@ class Private::PanoramasController < ApplicationController
     def has_right_to_create
       @folder = Folder.find_by(id: params[:private_panorama][:folder_id])
       has_right_to_change_files_in(@folder)
+    end
+    
+    def has_right_to_update
+      @panorama = Panorama.find(params[:id])
+      has_right_to_change_files_in(@panorama.folder)
     end
 end

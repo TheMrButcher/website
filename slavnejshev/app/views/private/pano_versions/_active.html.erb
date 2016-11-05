@@ -6,7 +6,8 @@
   <div class="pano-version-content">
     <div class="pano-version-info-block">
       <div class="description-block">
-        <b><%= t(:description_label) %></b> <%= (version.description.nil? ? t(:empty_description) : version.description) %>
+        <%= render partial: 'shared/description', locals: {
+          obj: version, url_path: private_pano_version_path(version), editable: admin_or_owner_of?(version.panorama.folder) } %>
       </div>
       <%= render partial: 'private/pano_versions/resource',
         locals: { version: version, resource: :config } %>

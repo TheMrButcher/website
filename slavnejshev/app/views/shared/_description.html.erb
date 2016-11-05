@@ -1,0 +1,20 @@
+<% desc_form_id_prefix = obj.class.name.demodulize.downcase %>
+<div class="description-main-block">
+  <% if editable %>
+    <a class="description-edit-button" data-toggle="collapse" href="#<%= desc_form_id_prefix %>-description-form">
+      <%= t('.edit_description') %>
+    </a>
+  <% end %>
+  <b><%= t('.description_label') %></b> 
+  <span id="description-text"><%= (obj.description.blank? ? t('.empty_description') : obj.description) %></span>
+</div>
+<% if editable %>
+  <div class="description-form collapse" id="<%= desc_form_id_prefix %>-description-form">
+    <%= form_for(obj, url: url_path) do |f| %>
+      <div class="form-group">
+        <%= f.text_area :description, placeholder: t('.suggest_write_description'), rows: 3, class: 'form-control' %>
+      </div>
+      <%= f.submit t('.submit_description'), class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>

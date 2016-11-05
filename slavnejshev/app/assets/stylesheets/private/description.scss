@@ -1,0 +1,12 @@
+.description-edit-button {
+  @extend .btn;
+  @extend .btn-secondary;
+  @extend .btn-sm; 
+  float: right;
+  margin-left: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.description-form {
+  padding: 0.5rem;
+}

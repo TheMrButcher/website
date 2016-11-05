@@ -1,6 +1,8 @@
 <% provide(:title, pano_title(@panorama, @version) ) %>
 <% provide(:block_title, t('.obj_name') + ' "' + @panorama.name + '"') %>
 
+<% editable = admin_or_owner_of?(@panorama.folder) %>
+
 <% content_for :on_block_top do %>
   <div class="col-md-12">
     <%= render partial: 'shared/path', locals: { full_path: @panorama.full_path  } %>
@@ -10,12 +12,13 @@
 <% content_for :block_header do %>
   <%= render partial: 'shared/tags', locals: { obj: @panorama  } %>
   <div class="pano-description">
-    <b><%= t(:description_label) %></b> <%= (@panorama.description.nil? ? t(:empty_description) : @panorama.description) %>
+    <%= render partial: 'shared/description', locals: {
+      obj: @panorama, url_path: private_panorama_path(@panorama.id), editable: editable } %>
   </div>
 <% end %>
 
 <% content_for :block_content do %>
-  <% if admin_or_owner_of?(@panorama.folder) %>
+  <% if editable %>
     <div class="add-pano-version-form">
       <%= form_for(:private_pano_version, url: private_panorama_pano_versions_path(@panorama.id)) do |f| %>
         <%= f.submit t('.submit_version'), class: 'btn btn-primary btn-lg btn-block' %>

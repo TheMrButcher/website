@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     
     resources :users
     resources :folders, only: [:create]
-    resources :panoramas, only: [:create]
+    resources :panoramas, only: [:create, :update]
     
     resources :panoramas do
       resources :pano_versions, only: [:create]
