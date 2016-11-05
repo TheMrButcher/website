@@ -4,7 +4,8 @@
 
 .pano-version-title {
   @extend .rounded;
-  padding: 0.2rem;
+  @extend .h5;
+  padding: 1.2rem;
   border: 1px solid #888;
 }
 
@@ -29,13 +30,13 @@
 }
 
 .pano-version-info-block {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .base-block {
   padding: 0.5rem;
-  border: 1px solid #888;
+  border: 1px solid #ccc;
   background-color: #e6e6e6;
 }
 
@@ -49,6 +50,7 @@
 
 .absent-resource {
   @extend .base-block;
+  border: 1px solid #ebb;
   background-color: #ecd4d4;
 }
 

@@ -24,7 +24,7 @@ class Private::PanoVersionsController < ApplicationController
       config_name = config_io.original_filename
       datum = Private::Datum.find_by(datum_hash: config_hash)
       if datum.nil?
-        path = Rails.root.join('storage', 'pano', config_hash)
+        path = 'storage/pano/' + config_hash
         datum = Private::Datum.create!(path: path, datum_hash: config_hash)
         FileUtils::mkdir_p Rails.root.join('storage', 'pano')
         File.open(path, 'wb') do |file|
@@ -45,7 +45,7 @@ class Private::PanoVersionsController < ApplicationController
           tile_hash = Private::Datum.digest(tile_datum)
           datum = Private::Datum.find_by(datum_hash: tile_hash)
           if datum.nil?
-            path = Rails.root.join('storage', 'pano', tile_hash)
+            path = 'storage/pano/' + tile_hash
             datum = Private::Datum.create!(path: path, datum_hash: tile_hash)
             FileUtils::mkdir_p Rails.root.join('storage', 'pano')
             File.open(path, 'wb') do |file|
