@@ -28,7 +28,7 @@ class Private::PanoramasController < ApplicationController
       if @folder.nil?
         redirect_to current_user
       else
-        redirect_to private_files_path(folder)
+        redirect_to private_files_path(@folder)
       end
     end
   end

@@ -11,4 +11,12 @@ class Private::PanoVersion < ApplicationRecord
   has_many :tiles, -> { where file_type: :pano_tile }, as: :storage, class_name: 'Private::File'
   
   belongs_to :panorama
+  
+  def min_pano?
+    config.present? && tiles.present?
+  end
+  
+  def full?
+    min_pano?
+  end
 end

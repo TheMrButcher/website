@@ -1,0 +1,5 @@
+<% if version.send(resource).present? %>
+  <span class="tag tag-success"><%= t('.has_' + resource.to_s) %></span>
+<% else %>
+  <span class="tag tag-danger"><%= t('.no_' + resource.to_s) %></span>
+<% end %>

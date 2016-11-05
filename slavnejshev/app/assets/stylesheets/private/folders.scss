@@ -1,3 +1,33 @@
-// Place all the styles related to the Private::Folders controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.add-block-header {
+  margin-bottom: 0.5rem;
+}
+
+.add-block-form {
+  margin-bottom: 0.5rem;
+}
+
+.entity-block {
+  @extend .col-sm-6;
+  @extend .col-lg-3;
+  @extend .mx-auto;
+  
+  padding: 1rem;
+}
+
+.entity-content {
+  @extend .rounded;
+  @extend .mx-auto;
+  border: 1px solid #888;
+  background-color: #e6e6e6;
+  padding: 1rem;
+}
+
+.entity-icon {
+  @extend .mx-auto;
+  @extend .text-xs-center;
+  margin-bottom: 0.5rem;
+}
+
+.entity-name {
+  @extend .text-xs-center;
+}

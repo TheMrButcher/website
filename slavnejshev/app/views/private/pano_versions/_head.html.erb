@@ -1,0 +1,14 @@
+<div class="pano-version-tags">
+  <% if version.full? %>
+    <span class="tag tag-success"><%= t('.full') %></span>
+  <% else %>
+    <% if version.min_pano? %>
+      <span class="tag tag-warning"><%= t('.min') %></span>
+    <% else %>
+      <span class="tag tag-danger"><%= t('.incomplete') %></span>
+    <% end %>
+  <% end %>
+  
+  <%= render partial: 'private/pano_versions/resource_tag', locals: { version: version, resource: :config } %>
+  <%= render partial: 'private/pano_versions/resource_tag', locals: { version: version, resource: :tiles } %>
+</div>

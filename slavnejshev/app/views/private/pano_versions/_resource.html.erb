@@ -1,0 +1,19 @@
+<% if version.send(resource).present? %>
+  <div class="present-resource">
+    <div class="resource-status">
+      <b><%= t('.' + resource.to_s) %></b> <%= t('.present') %>
+    </div>
+  </div>
+<% else %>
+  <div class="absent-resource">
+    <div class="resource-status">
+      <b><%= t('.' + resource.to_s) %></b> <%= t('.absent') %>
+    </div>
+    <div class="resource-load-form">
+      <%= form_for(version, html: { multipart: true }) do |f| %>
+        <%= f.file_field resource %>
+        <%= f.submit t('.submit_' + resource.to_s), class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,3 +1,72 @@
-// Place all the styles related to the Private::PanoVersions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.add-pano-version-form {
+  padding: 0rem 1rem 1rem;
+}
+
+.pano-version-title {
+  @extend .rounded;
+  padding: 0.2rem;
+  border: 1px solid #888;
+}
+
+.pano-version-tags {
+  float: right;
+}
+
+.active-pano-version {
+  .pano-version-title {
+    background-color: #ccccec;
+  }
+}
+
+.other-pano-version {
+  .pano-version-title {
+    background-color: #e6e6e6;
+  }
+}
+
+.pano-version-content {
+  margin-bottom: 1rem;
+}
+
+.pano-version-info-block {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.base-block {
+  padding: 0.5rem;
+  border: 1px solid #888;
+  background-color: #e6e6e6;
+}
+
+.description-block {
+  @extend .base-block;
+}
+
+.present-resource {
+  @extend .base-block;
+}
+
+.absent-resource {
+  @extend .base-block;
+  background-color: #ecd4d4;
+}
+
+.pano-external-container {
+  padding: 1rem 1rem 0rem;
+}
+
+.container-4-to-3 {
+  @extend .w-100;
+  padding-bottom: 75%;
+  position: relative;
+}
+
+#pano-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+

@@ -1,0 +1,13 @@
+<div class="obj-tags">
+  <span class="tag tag-default"><%= t('.owner') + obj.owner.name %></span>
+  <% if obj.public? %>
+    <span class="tag tag-info"><%= t('.public') %></span>
+  <% else %>
+    <span class="tag tag-warning"><%= t('.private') %></span>
+  <% end %>
+  <% if obj.respond_to?('stores_panoramas?') %>
+    <% if obj.stores_panoramas? %>
+      <span class="tag tag-info"><%= t('.panorama') %></span>
+    <% end %>
+  <% end %>
+</div>

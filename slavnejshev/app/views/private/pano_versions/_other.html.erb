@@ -1,0 +1,6 @@
+<div class="other-pano-version">
+  <div class="pano-version-title">
+    <%= link_to t('private.pano_versions.prefix') + " #" + version.idx.to_s, private_show_pano_version_path(@panorama, version.idx) %>
+    <%= render partial: 'private/pano_versions/head', locals: { version: version } %>
+  </div>
+</div>

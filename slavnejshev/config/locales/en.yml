@@ -1,4 +1,6 @@
 en:
+  title: "Website of Slavnejshev Filipp"
+  
   created_user: "Successfully created new user."
   created_folder: "Successfully created new folder."
   created_panorama: "Successfully created new panorama."
@@ -10,6 +12,8 @@ en:
   wrong_folder_params: "Can't create folder with such params."
   wrong_panorama_params: "Can't create panorama with such params."
   
+  users_title: "Users"
+  new_user_title: "New User"
   name_label: "Name:"
   email_label: "Email:"
   password_label: "Password:"
@@ -18,29 +22,60 @@ en:
   submit_user: "Add user"
   bad_name_password_pair: "Wrong name/password pair."
   
+  roots_title: "Roots"
+  new_root_title: "New Root"
   folder_name_label: "Folder name:"
-  owner_name_label: "Owner:"
-  status_label: "Status:"
-  public_status_label: "public"
-  private_status_label: "private"
-  public_folder_label: "Public folder:"
   panorama_folder_label: "Can store panoramas:"
   submit_folder: "Add root folder"
-  submit_subfolder: "Add subfolder"
   
-  subfolders_num: "Number of subfolders:"
   root_folders_num: "Number of root folders:"
   
-  back_to_folder: "Back to folder"
-  panorama_name_label: "Panorama name:"
-  pano_versions: "Panorama versions:"
-  version_label: "Version:"
+  shared:
+    tags:
+      owner: "Owner: "
+      public: "Public"
+      private: "Private"
+      panorama: "Panoramas"
+  
+  private:
+    folders:
+      show:
+        obj_name: "Folder"
+        subfolder_header_button: "Subfolders"
+        subfolder_label: "Folder name:"
+        submit_subfolder: "Add subfolder"
+        panorama_header_button: "Panoramas"
+        panorama_label: "Panorama name:"
+        submit_panorama: "Add panorama"
+    
+    panoramas:
+      show:
+        obj_name: "Panorama"
+        version: "Version"
+        submit_version: "Add version"
+        
+    pano_versions:
+      prefix: "Version"
+      
+      resource:
+        present: "loaded"
+        absent: "none"
+        config: "Config: "
+        submit_config: "Upload config"
+        tiles: "Tiles: "
+        submit_tiles: "Upload tiles"
+        
+      head:
+        full: "Full"
+        min: "Minimum"
+        incomplete: "Incomplete"
+        
+      resource_tag:
+        has_config: "Config"
+        no_config: "Config"
+        has_tiles: "Tiles"
+        no_tiles: "Tiles"
+        
   description_label: "Description:"
   empty_description: "none"
-  submit_panorama: "Add panorama"
-  submit_pano_version: "Add version"
-  submit_pano_config: "Upload config"
-  version_has_config: "Configuration file: loaded"
-  submit_pano_tiles: "Upload panorama tiles"
-  version_has_tiles: "Panorama tiles: loaded"
 

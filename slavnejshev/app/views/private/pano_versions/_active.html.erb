@@ -1,0 +1,24 @@
+<div class="active-pano-version">
+  <div class="pano-version-title">
+    <%= t('private.pano_versions.prefix') + " #" + version.idx.to_s %>
+    <%= render partial: 'private/pano_versions/head', locals: { version: version } %>
+  </div>
+  <div class="pano-version-content">
+    <div class="pano-version-info-block">
+      <div class="description-block">
+        <b><%= t(:description_label) %></b> <%= (version.description.nil? ? t(:empty_description) : version.description) %>
+      </div>
+      <%= render partial: 'private/pano_versions/resource',
+        locals: { version: version, resource: :config } %>
+      <%= render partial: 'private/pano_versions/resource',
+        locals: { version: version, resource: :tiles } %>
+    </div>
+    <% if @version.min_pano? %>
+      <div class="pano-external-container">
+        <div class="container-4-to-3">
+          <div id="pano-container" data-pano-config-path="<%= private_show_datum_path(@version.config) %>" ></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

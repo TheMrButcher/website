@@ -1,0 +1,16 @@
+.obj-info-block {
+  padding: 1rem;
+  background-color: #dcdcec;
+  
+  .obj-tags {
+    @extend .text-xs-center;
+    .tag {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.obj-content-block {
+  padding: 1rem;
+  background-color: #efefef;
+}
