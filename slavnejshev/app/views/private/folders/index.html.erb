@@ -1,6 +1,7 @@
 <% provide(:title, t(:roots_title)) %>
 
-<%= "#{t(:root_folders_num)} #{@folders.count}" %>
-<% @folders.each do |folder| %>
-  <p><%= link_to folder.name, private_files_path(folder) %></p>
+<% content_for :block_content do %>
+  <% @folders.each do |folder| %>
+    <p><%= link_to folder.name, private_files_path(folder) %></p>
+  <% end %>
 <% end %>

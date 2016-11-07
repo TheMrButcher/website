@@ -1,5 +1,6 @@
 class Private::PanoVersionsController < ApplicationController
   include Private::SessionsHelper
+  include Private::DataHelper
   Panorama = Private::Panorama
   PanoVersion = Private::PanoVersion
   
@@ -22,44 +23,13 @@ class Private::PanoVersionsController < ApplicationController
     
     if @pano_version.config.nil? && params[:private_pano_version][:config].present?
       config_io = params[:private_pano_version][:config]
-      config_datum = config_io.read
-      config_hash = Private::Datum.digest(config_datum)
-      config_name = config_io.original_filename
-      datum = Private::Datum.find_by(datum_hash: config_hash)
-      if datum.nil?
-        path = 'storage/pano/' + config_hash
-        datum = Private::Datum.create!(path: path, datum_hash: config_hash)
-        FileUtils::mkdir_p Rails.root.join('storage', 'pano')
-        File.open(path, 'wb') do |file|
-          file.write(config_datum)
-        end
-      end
-      config_key = "pano/" + @pano_version.id.to_s + "/" + config_name
-      config = datum.files.create(
-        original_name: config_name, key: config_key, storage: @pano_version, file_type: :pano_config)
+      make_pano_file(config_io.original_filename, config_io.read, :pano_config)
     end
     if @pano_version.tiles.empty? && params[:private_pano_version][:tiles].present?
-      require 'zip'
-      archive_name = params[:private_pano_version][:tiles].original_filename
-      Zip::File.open(params[:private_pano_version][:tiles].tempfile) do |zip_file|
-        zip_file.each do |entry|
-          next unless entry.file?
-          tile_datum = entry.get_input_stream.read
-          tile_hash = Private::Datum.digest(tile_datum)
-          datum = Private::Datum.find_by(datum_hash: tile_hash)
-          if datum.nil?
-            path = 'storage/pano/' + tile_hash
-            datum = Private::Datum.create!(path: path, datum_hash: tile_hash)
-            FileUtils::mkdir_p Rails.root.join('storage', 'pano')
-            File.open(path, 'wb') do |file|
-              file.write(tile_datum)
-            end
-          end
-          tile_key = "pano/" + @pano_version.id.to_s + "/" + entry.name
-          config = datum.files.create(
-            original_name: File.basename(entry.name), key: tile_key, storage: @pano_version, file_type: :pano_tile)
-        end
-      end
+      unzip_pano_archive(params[:private_pano_version][:tiles], :pano_tile)
+    end
+    if @pano_version.hotspots.empty? && params[:private_pano_version][:hotspots].present?
+      unzip_pano_archive(params[:private_pano_version][:hotspots], :pano_hotspot_image)
     end
     redirect_to private_show_pano_version_path(@panorama, @pano_version.idx)
   end

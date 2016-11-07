@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get 'roots/new', to: 'folders#new'
     
     get 'files/*id', to: 'folders#show', as: 'files'
+    get 'pano/*id/version/:version/images/:image_name', to: 'panoramas#image'
+    get 'pano/*id/images/:image_name', to: 'panoramas#image'
     get 'pano/*id/version/:version', to: 'panoramas#show', as: 'show_pano_version'
     get 'pano/*id', to: 'panoramas#show', as: 'show_pano'
     get 'data/*id', to: 'data#show', as: 'show_datum'

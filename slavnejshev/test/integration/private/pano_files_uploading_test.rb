@@ -19,4 +19,18 @@ class Private::PanoFilesUploadingTest < ActionDispatch::IntegrationTest
     assert @pano_version.tiles.find_by(key: 'pano/' + @pano_version.id.to_s + '/dir/2.txt')
     assert @pano_version.tiles.find_by(key: 'pano/' + @pano_version.id.to_s + '/dir/3.txt')
   end
+  
+  test 'successfull hotspots loading' do
+    log_in_as(@first)
+    hotspots = fixture_file_upload('test/fixtures/private/files/archive.zip', 'application/zip', binary: true)
+    assert_difference 'Private::Datum.count', 3 do
+      patch private_pano_version_path(@pano_version), params: { private_pano_version: { hotspots: hotspots } }
+    end
+    assert_redirected_to private_show_pano_version_path(@pano_version.panorama, @pano_version.idx)
+    @pano_version.reload
+    assert_equal 3, @pano_version.hotspots.count
+    assert @pano_version.hotspots.find_by(key: 'pano/' + @pano_version.id.to_s + '/dir/1.txt')
+    assert @pano_version.hotspots.find_by(key: 'pano/' + @pano_version.id.to_s + '/dir/2.txt')
+    assert @pano_version.hotspots.find_by(key: 'pano/' + @pano_version.id.to_s + '/dir/3.txt')
+  end
 end

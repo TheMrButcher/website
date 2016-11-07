@@ -1949,7 +1949,7 @@ function pano2vrSkin(player,base) {
 				me.skin._image_popup.style.visibility='inherit';
 				me.skin._image_popup.ggVisible=true;
 				me.skin._popup_image.ggText=me.hotspot.url;
-				me.skin._popup_image__img.src=me.skin._popup_image.ggText;
+				me.skin._popup_image__img.src=window.location.pathname + '/' + me.skin._popup_image.ggText;
 				me.skin._screentint.style[domTransition]='none';
 				me.skin._screentint.style.visibility='inherit';
 				me.skin._screentint.ggVisible=true;

@@ -13,6 +13,8 @@
         locals: { version: version, resource: :config } %>
       <%= render partial: 'private/pano_versions/resource',
         locals: { version: version, resource: :tiles } %>
+      <%= render partial: 'private/pano_versions/resource',
+        locals: { version: version, resource: :hotspots } %>
     </div>
     <% if @version.min_pano? %>
       <div class="pano-external-container">
