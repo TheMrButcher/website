@@ -5,6 +5,9 @@ class Private::Panorama < ApplicationRecord
     length: { maximum: 50 },
     format: { with: VALID_NAME }
     
+  validates :title,
+    length: { maximum: 50 }
+    
   validates :description,
     length: { maximum: 1000 }
 
@@ -18,6 +21,10 @@ class Private::Panorama < ApplicationRecord
   has_one :owner, through: :folder
   
   before_validation :make_full_path
+  
+  def readable_name
+    title.present? ? title : name
+  end
   
   def to_param
     full_path

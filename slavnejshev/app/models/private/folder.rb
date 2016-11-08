@@ -5,6 +5,9 @@ class Private::Folder < ApplicationRecord
     length: { maximum: 50 },
     format: { with: VALID_NAME }
     
+  validates :title,
+    length: { maximum: 50 }
+    
   validates :full_path,
     presence: true,
     uniqueness: true
@@ -16,6 +19,10 @@ class Private::Folder < ApplicationRecord
   before_validation :make_full_path
   
   acts_as_tree
+  
+  def readable_name
+    title.present? ? title : name
+  end
   
   def to_param
     full_path

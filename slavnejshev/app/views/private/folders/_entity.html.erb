@@ -4,7 +4,7 @@
       <%= link_to image_tag(type.to_s + ".png", alt: type.capitalize), path %>
     </div>
     <div class="entity-name">
-      <h4><%= link_to entity.name, path %></h4>
+      <h4><%= link_to entity.readable_name, path %></h4>
     </div>
   </div>
 </div>

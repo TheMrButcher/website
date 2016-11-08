@@ -37,6 +37,30 @@ class Private::PanoramaTest < ActiveSupport::TestCase
     assert_not @panorama.valid?
   end
   
+  test "nil title" do
+    @panorama.title = nil
+    assert @panorama.valid?
+  end
+  
+  test "blank title" do
+    @panorama.title = " " * 3
+    assert @panorama.valid?
+  end
+  
+  test "too long title" do
+    @panorama.title = "a" * 51
+    assert_not @panorama.valid?
+  end
+  
+  test "readable name" do
+    assert @panorama.title.nil?
+    assert @panorama.name.present?
+    assert_equal @panorama.name, @panorama.readable_name
+    new_title = "Title"
+    @panorama.title = new_title
+    assert_equal new_title, @panorama.readable_name
+  end
+  
   test "require folder" do
     @panorama.folder_id = nil
     assert_not @panorama.valid?

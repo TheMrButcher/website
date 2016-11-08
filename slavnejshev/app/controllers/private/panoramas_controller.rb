@@ -37,9 +37,9 @@ class Private::PanoramasController < ApplicationController
   end
   
   def update
-    panorama_params = params.require(:private_panorama).permit(:description)
+    panorama_params = params.require(:private_panorama).permit(:description, :title)
     @panorama.update_attributes(panorama_params)
-    redirect_to private_show_pano_path(@panorama) 
+    redirect_to private_show_pano_path(@panorama)
   end
   
   private

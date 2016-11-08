@@ -1,5 +1,7 @@
 <% provide(:title, @folder.full_path) %>
-<% provide(:block_title, t('.obj_name') + ' "' + @folder.name + '"') %>
+<% provide(:block_title, t('.obj_name') + ' "' + @folder.readable_name + '"') %>
+
+<% editable = admin_or_owner_of?(@folder) %>
 
 <% content_for :on_block_top do %>
   <div class="col-md-12">
@@ -9,6 +11,8 @@
 
 <% content_for :block_header do %>
   <%= render partial: 'shared/tags', locals: { obj: @folder  } %>
+  <%= render partial: 'shared/title', locals: {
+    obj: @folder, url_path: private_folder_path(@folder.id), editable: editable } %>
 <% end %>
       
 <% content_for :block_content do %>
@@ -16,11 +20,14 @@
     <%= render partial: 'tools', locals: { folder: @folder  } %>
   <% end %>
   <div class="row">
-    <% @folder.children.each do |folder| %>
+    <% @folder.children.each_with_index do |folder, index| %>
       <%= render partial: 'entity', locals: { entity: folder, type: :folder, path: private_files_path(folder) } %>
+      <%= render partial: 'clearfix', locals: { index: index + 1 } %>
     <% end %>
-    <% @folder.panoramas.each do |panorama| %>
+    <% folders_num = @folder.children.count %>
+    <% @folder.panoramas.each_with_index do |panorama, index| %>
       <%= render partial: 'entity', locals: { entity: panorama, type: :panorama, path: private_show_pano_path(panorama) } %>
+      <%= render partial: 'clearfix', locals: { index: folders_num + index + 1 } %>
     <% end %>
   </div>
 <% end %>

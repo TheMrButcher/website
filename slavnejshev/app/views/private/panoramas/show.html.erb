@@ -1,5 +1,5 @@
 <% provide(:title, pano_title(@panorama, @version) ) %>
-<% provide(:block_title, t('.obj_name') + ' "' + @panorama.name + '"') %>
+<% provide(:block_title, t('.obj_name') + ' "' + @panorama.readable_name + '"') %>
 
 <% editable = admin_or_owner_of?(@panorama.folder) %>
 
@@ -11,6 +11,9 @@
 
 <% content_for :block_header do %>
   <%= render partial: 'shared/tags', locals: { obj: @panorama  } %>
+  <%= render partial: 'shared/title', locals: {
+    obj: @panorama, url_path: private_panorama_path(@panorama.id), editable: editable } %>
+  <div class="hor-divider"></div>
   <div class="pano-description">
     <%= render partial: 'shared/description', locals: {
       obj: @panorama, url_path: private_panorama_path(@panorama.id), editable: editable } %>

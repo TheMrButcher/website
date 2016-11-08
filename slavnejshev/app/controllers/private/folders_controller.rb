@@ -3,10 +3,11 @@ class Private::FoldersController < ApplicationController
   
   include Private::SessionsHelper
   
-  before_action :logged_in_user, only: [:new, :index, :create]
+  before_action :logged_in_user, only: [:new, :index, :create, :update]
   before_action :admin_user, only: [:new, :index]
   before_action :has_right_to_see, only: [:show]
   before_action :has_right_to_create, only: [:create]
+  before_action :has_right_to_update, only: [:update]
   
   def new
     @folder = Folder.new
@@ -33,6 +34,12 @@ class Private::FoldersController < ApplicationController
     @folders = Folder.roots
   end
   
+  def update
+    folder_params = params.require(:private_folder).permit(:title)
+    @folder.update_attributes(folder_params)
+    redirect_to private_files_path(@folder)
+  end
+  
   private
     def has_right_to_see
       @folder = Folder.find_by(full_path: params[:id])
@@ -51,6 +58,11 @@ class Private::FoldersController < ApplicationController
           redirect_to current_user
         end
       end
+    end
+    
+    def has_right_to_update
+      @folder = Folder.find(params[:id])
+      has_right_to_change_files_in(@folder)
     end
     
     def redirect_to_parent_or(path)

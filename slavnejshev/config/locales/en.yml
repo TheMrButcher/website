@@ -45,6 +45,13 @@ en:
       edit_description: "Edit"
       suggest_write_description: "Please write description..."
       submit_description: "Set description"
+      
+    title:
+      file_name_label: "File name:"
+      title_label: "Title:"
+      empty_title: "none"
+      edit_title: "Edit"
+      submit_title: "Set title"
   
   private:
     folders:

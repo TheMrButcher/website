@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy'
     
     resources :users
-    resources :folders, only: [:create]
+    resources :folders, only: [:create, :update]
     resources :panoramas, only: [:create, :update]
     
     resources :panoramas do

@@ -34,7 +34,7 @@ class Private::PanoVersionsController < ApplicationController
     redirect_to private_show_pano_version_path(@panorama, @pano_version.idx)
   end
   
-  private  
+  private
     def has_right_to_create
       @panorama = Panorama.find_by(id: params[:panorama_id])
       has_right_to_update_panorama

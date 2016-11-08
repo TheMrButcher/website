@@ -1,0 +1,24 @@
+<% title_form_id_prefix = obj.class.name.demodulize.downcase %>
+<div class="file-name-block">
+  <b><%= t('.file_name_label') %></b> 
+  <span id="file-name-text"><%= obj.name %></span>
+</div>
+<div class="title-main-block">
+  <% if editable %>
+    <a class="title-edit-button" data-toggle="collapse" href="#<%= title_form_id_prefix %>-title-form">
+      <%= t('.edit_title') %>
+    </a>
+  <% end %>
+  <b><%= t('.title_label') %></b> 
+  <span id="title-text"><%= (obj.title.blank? ? t('.empty_title') : obj.title) %></span>
+</div>
+<% if editable %>
+  <div class="title-form collapse" id="<%= title_form_id_prefix %>-title-form">
+    <%= form_for(obj, url: url_path) do |f| %>
+      <div class="form-group">
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      <%= f.submit t('.submit_title'), class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>

@@ -36,6 +36,30 @@ class Private::FolderTest < ActiveSupport::TestCase
     assert_not @root.valid?
   end
   
+  test "nil title" do
+    @root.title = nil
+    assert @root.valid?
+  end
+  
+  test "blank title" do
+    @root.title = " " * 3
+    assert @root.valid?
+  end
+  
+  test "too long title" do
+    @root.title = "a" * 51
+    assert_not @root.valid?
+  end
+  
+  test "readable name" do
+    assert @root.title.nil?
+    assert @root.name.present?
+    assert_equal @root.name, @root.readable_name
+    new_title = "Title"
+    @root.title = new_title
+    assert_equal new_title, @root.readable_name
+  end
+  
   test "full_path of root is correct after save" do
     @root.save
     assert_equal "root", @root.full_path
