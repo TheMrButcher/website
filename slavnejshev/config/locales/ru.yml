@@ -1,0 +1,89 @@
+ru:
+  title: "Сайт Славнейшева Филиппа"
+  login: "Вход"
+  logout: "Выйти"
+  
+  created_user: "Пользователь успешно создан."
+  created_folder: "Папка успешно создана."
+  created_panorama: "Панорама успешно создана."
+  
+  no_such_user: "Пользователь не найден."
+  logging_in_required: "Пожалуйста, войдите в систему."
+  access_denied: "У вас нет прав просматривать данный контент."
+  wrong_user_params: "Неправильные параметры пользователя."
+  wrong_folder_params: "Неправильные параметры папки."
+  wrong_panorama_params: "Неправильные параметры панорамы."
+  bad_name_password_pair: "Неверная пара логин/пароль."
+  
+  shared:
+    tags:
+      owner: "Владелец: "
+      public: "Открытый доступ"
+      private: "Закрытый доступ"
+      panorama: "Панорамы разрешены"
+      
+    description:
+      description_label: "Описание:"
+      empty_description: "отсутствует"
+      edit_description: "Ред."
+      suggest_write_description: "Описание"
+      submit_description: "Записать"
+      
+    title:
+      file_name_label: "Имя файла:"
+      title_label: "Название:"
+      empty_title: "отсутствует"
+      edit_title: "Ред."
+      submit_title: "Записать"
+  
+  private:
+    sessions:
+      new:
+        name_label: "Логин:"
+        password_label: "Пароль:"
+        submit_session: "Войти"
+        
+    folders:
+      show:
+        obj_name: "Папка"
+      
+      tools:
+        subfolder_header_button: "Подпапки"
+        subfolder_label: "Имя папки:"
+        submit_subfolder: "Добавить подпапку"
+        panorama_header_button: "Панорамы"
+        panorama_label: "Имя панорамы:"
+        submit_panorama: "Добавить панораму"
+        
+    panoramas:
+      show:
+        obj_name: "Панорама"
+        version: "Версия"
+        submit_version: "Добавить версию"
+        
+    pano_versions:
+      prefix: "Версия"
+      
+      resource:
+        present: "загружено"
+        absent: "нет"
+        config: "Конфигурация: "
+        submit_config: "Загрузить конфигурацию"
+        tiles: "Тайлы: "
+        submit_tiles: "Загрузить тайлы"
+        hotspots: "Изображения: "
+        submit_hotspots: "Загрузить изображения"
+        
+      head:
+        full: "Полная"
+        min: "Минимальная"
+        incomplete: "Неполная"
+        
+      resource_tag:
+        has_config: "Конфиг"
+        no_config: "Конфиг"
+        has_tiles: "Тайлы"
+        no_tiles: "Тайлы"
+        has_hotspots: "Изображения"
+        no_hotspots: "Изображения"
+  

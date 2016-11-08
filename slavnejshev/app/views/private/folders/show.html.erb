@@ -1,4 +1,4 @@
-<% provide(:title, @folder.full_path) %>
+<% provide(:title, @folder.readable_name) %>
 <% provide(:block_title, t('.obj_name') + ' "' + @folder.readable_name + '"') %>
 
 <% editable = admin_or_owner_of?(@folder) %>

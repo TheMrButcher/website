@@ -13,6 +13,7 @@ en:
   wrong_user_params: "Can't create user with such params."
   wrong_folder_params: "Can't create folder with such params."
   wrong_panorama_params: "Can't create panorama with such params."
+  bad_name_password_pair: "Wrong name/password pair."
   
   users_title: "Users"
   new_user_title: "New User"
@@ -22,7 +23,6 @@ en:
   password_confirmation_label: "Password confirmation:"
   submit_session: "Log in"
   submit_user: "Add user"
-  bad_name_password_pair: "Wrong name/password pair."
   
   roots_title: "Roots"
   new_root_title: "New Root"
@@ -54,6 +54,12 @@ en:
       submit_title: "Set title"
   
   private:
+    sessions:
+      new:
+        name_label: "Name:"
+        password_label: "Password:"
+        submit_session: "Log in"
+    
     folders:
       show:
         obj_name: "Folder"

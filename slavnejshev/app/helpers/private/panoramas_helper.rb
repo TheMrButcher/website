@@ -1,6 +1,6 @@
 module Private::PanoramasHelper
   def pano_title(pano, version = nil)
-    title = t('private.panoramas.show.obj_name') + " " + pano.full_path
+    title = pano.readable_name
     if version.nil?
       title
     else
