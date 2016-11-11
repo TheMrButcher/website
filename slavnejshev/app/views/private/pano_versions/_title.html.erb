@@ -1,0 +1,10 @@
+<div class="pano-version-title">
+  <%= render partial: 'private/pano_versions/head', locals: { version: version } %>
+  <% title_text = t('private.pano_versions.prefix') + " #" + version.idx.to_s %>
+  <% if make_link %>
+    <%= link_to title_text, private_show_pano_version_path(@panorama, version.idx) %>
+  <% else %>
+    <%= title_text %>
+  <% end %>
+  <div class="clearfix"></div>
+</div>

@@ -14,3 +14,10 @@
   padding: 1rem;
   background-color: #f0fcfc;
 }
+
+@include media-breakpoint-down(sm) {
+  .main-content-block {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+}

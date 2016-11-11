@@ -10,10 +10,18 @@
       <b><%= t('.' + resource.to_s) %></b> <%= t('.absent') %>
     </div>
     <% if admin_or_owner_of?(version.panorama.folder) %>
-      <div class="resource-load-form">
+      <div class="resource-load-form container">
         <%= form_for(version, html: { multipart: true }) do |f| %>
-          <%= f.file_field resource %>
-          <%= f.submit t('.submit_' + resource.to_s), class: 'btn btn-secondary' %>
+          <div class="form-group row">
+            <div class="col-md-8 col-lg-6">
+              <%= f.file_field resource, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-lg-6">
+              <%= f.submit t('.submit_' + resource.to_s), class: 'btn btn-primary btn-block' %>
+            </div>
+          </div>
         <% end %>
       </div>
     <% end %>

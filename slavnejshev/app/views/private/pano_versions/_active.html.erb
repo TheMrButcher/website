@@ -1,8 +1,5 @@
 <div class="active-pano-version">
-  <div class="pano-version-title">
-    <%= t('private.pano_versions.prefix') + " #" + version.idx.to_s %>
-    <%= render partial: 'private/pano_versions/head', locals: { version: version } %>
-  </div>
+  <%= render partial: 'private/pano_versions/title', locals: { version: version, make_link: false } %>
   <div class="pano-version-content">
     <div class="pano-version-info-block">
       <div class="description-block">

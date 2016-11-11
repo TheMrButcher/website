@@ -4,9 +4,7 @@
 <% editable = admin_or_owner_of?(@panorama.folder) %>
 
 <% content_for :on_block_top do %>
-  <div class="col-md-12">
-    <%= render partial: 'shared/path', locals: { full_path: @panorama.full_path  } %>
-  </div>
+  <%= render partial: 'shared/path', locals: { full_path: @panorama.full_path  } %>
 <% end %>
 
 <% content_for :block_header do %>

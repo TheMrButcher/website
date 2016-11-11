@@ -4,21 +4,23 @@
   <div class="container">
     <%= form_for(:session, url: private_login_path) do |f| %>
       <div class="form-group row">
-        <%= f.label :name, t('.name_label'), class: 'offset-sm-1 col-sm-2 col-form-label col-form-label-lg' %>
-        <div class="col-sm-8">
+        <%= f.label :name, t('.name_label'), class: 'col-md-3 offset-lg-1 col-lg-2 col-form-label col-form-label-lg' %>
+        <div class="col-md-8">
           <%= f.text_field :name, class: 'form-control form-control-lg' %>
         </div>
       </div>
       
       <div class="form-group row">
-        <%= f.label :password, t('.password_label'), class: 'offset-sm-1 col-sm-2 col-form-label col-form-label-lg' %>
-        <div class="col-sm-8">
+        <%= f.label :password, t('.password_label'), class: 'col-md-3 offset-lg-1 col-lg-2 col-form-label col-form-label-lg' %>
+        <div class="col-md-8">
           <%= f.password_field :password, class: 'form-control form-control-lg' %>
         </div>
       </div>
       
-      <div class="col-sm-6 offset-sm-3">
-        <%= f.submit t('.submit_session'), class: 'btn btn-primary btn-lg btn-block' %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <%= f.submit t('.submit_session'), class: 'btn btn-primary btn-lg btn-block' %>
+        </div>
       </div>
     <% end %>
   </div>

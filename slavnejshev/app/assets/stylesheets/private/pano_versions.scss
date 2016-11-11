@@ -10,7 +10,9 @@
 }
 
 .pano-version-tags {
+  @extend .text-xs-right;
   float: right;
+  max-width: 66%;
 }
 
 .active-pano-version {
@@ -21,7 +23,7 @@
 
 .other-pano-version {
   .pano-version-title {
-    background-color: #e6e6e6;
+    background-color: #e8f4f4;
   }
 }
 
@@ -35,9 +37,9 @@
 }
 
 .base-block {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  background-color: #e6e6e6;
+  padding: 0.8rem 0.8rem;
+  border: 1px solid #e0ecec;
+  background-color: #e8f4f4;
 }
 
 .description-block {
@@ -50,8 +52,12 @@
 
 .absent-resource {
   @extend .base-block;
-  border: 1px solid #ebb;
-  background-color: #ecd4d4;
+  border: 1px solid #e0c8c8;
+  background-color: #f0dcdc;
+}
+
+.resource-load-form {
+  padding-top: 1rem;
 }
 
 .pano-external-container {
@@ -70,5 +76,17 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+@include media-breakpoint-down(sm) {
+  .pano-version-info-block {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
+  
+  .pano-external-container {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
 }
 

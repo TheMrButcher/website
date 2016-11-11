@@ -4,7 +4,7 @@ class Private::PanoramasController < ApplicationController
   include Private::SessionsHelper
   Panorama = Private::Panorama
   
-  before_action :logged_in_user, only: [:create, :update, :image]
+  before_action :logged_in_user, only: [:create, :update]
   before_action :has_right_to_see, only: [:show, :image]
   before_action :has_right_to_create, only: [:create]
   before_action :has_right_to_update, only: [:update]

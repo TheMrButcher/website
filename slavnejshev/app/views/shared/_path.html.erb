@@ -1,17 +1,15 @@
-<h2>  
-  <ol class="breadcrumb">
-    <% cur_path = '' %>
-    <% full_path.split('/').each do |dir_name| %>
-      <% cur_path += '/' unless cur_path.empty? %>
-      <% cur_path += dir_name %>
-      <% is_last = cur_path == full_path %>
-      <li class="breadcrumb-item <%= 'active' if is_last %>">
-        <% if is_last %>
-          <%= dir_name %>
-        <% else %>
-          <%= link_to dir_name, private_files_path(cur_path) %>
-        <% end %>
-      </li>
-    <% end %>
-  </ol>
-</h2>
+<ol class="breadcrumb path-block">
+  <% cur_path = '' %>
+  <% full_path.split('/').each do |dir_name| %>
+    <% cur_path += '/' unless cur_path.empty? %>
+    <% cur_path += dir_name %>
+    <% is_last = cur_path == full_path %>
+    <li class="breadcrumb-item <%= 'active' if is_last %>">
+      <% if is_last %>
+        <%= dir_name %>
+      <% else %>
+        <%= link_to dir_name, private_files_path(cur_path) %>
+      <% end %>
+    </li>
+  <% end %>
+</ol>
