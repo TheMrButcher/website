@@ -4,10 +4,10 @@ class Private::PanoramasController < ApplicationController
   include Private::SessionsHelper
   Panorama = Private::Panorama
   
-  before_action :logged_in_user, only: [:create, :update]
+  before_action :logged_in_user, only: [:create, :update, :destroy]
   before_action :has_right_to_see, only: [:show, :image]
   before_action :has_right_to_create, only: [:create]
-  before_action :has_right_to_update, only: [:update]
+  before_action :has_right_to_update, only: [:update, :destroy]
   
   def show
     calc_version
@@ -40,6 +40,13 @@ class Private::PanoramasController < ApplicationController
     panorama_params = params.require(:private_panorama).permit(:description, :title)
     @panorama.update_attributes(panorama_params)
     redirect_to private_show_pano_path(@panorama)
+  end
+  
+  def destroy
+    folder = @panorama.folder
+    @panorama.destroy
+    flash[:success] = t(:destroyed_panorama)
+    redirect_to private_files_path(folder)
   end
   
   private

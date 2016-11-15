@@ -92,5 +92,30 @@ class Private::PanoramasControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to private_files_path(@not_pano_folder)
     assert_not flash.empty?
   end
+  
+  test 'need log in to delete panorama' do
+    assert_no_difference 'Private::Panorama.count' do
+      delete private_panorama_path(@pano.id)
+    end
+    assert_redirected_to private_login_path
+    assert_not flash.empty?
+  end
+  
+  test 'need right to delete panorama' do
+    log_in_as(@second)
+    assert_no_difference 'Private::Panorama.count' do
+      delete private_panorama_path(@pano.id)
+    end
+    assert_redirected_to private_user_path(@second)
+    assert_not flash.empty?
+  end
+  
+  test 'delete panorama' do
+    log_in_as(@first)
+    assert_difference 'Private::Panorama.count', -1 do
+      delete private_panorama_path(@pano.id)
+    end
+    assert_redirected_to private_files_path(@pano_folder)
+  end
 end
 

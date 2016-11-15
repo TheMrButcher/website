@@ -17,7 +17,7 @@ class Private::Panorama < ApplicationRecord
   
   validates :folder_id, presence: true
   belongs_to :folder
-  has_many :versions, class_name: "Private::PanoVersion"
+  has_many :versions, class_name: "Private::PanoVersion", dependent: :destroy
   has_one :owner, through: :folder
   
   before_validation :make_full_path

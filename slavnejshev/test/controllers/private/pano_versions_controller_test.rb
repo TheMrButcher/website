@@ -113,4 +113,29 @@ class Private::PanoVersionsControllerTest < ActionDispatch::IntegrationTest
     @pano_version.reload
     assert_not @pano_version.config.nil?
   end
+  
+  test 'need log in to delete version' do
+    assert_no_difference 'Private::PanoVersion.count' do
+      delete private_pano_version_path(@pano_version)
+    end
+    assert_redirected_to private_login_path
+    assert_not flash.empty?
+  end
+  
+  test 'need right to delete version' do
+    log_in_as(@second)
+    assert_no_difference 'Private::PanoVersion.count' do
+      delete private_pano_version_path(@pano_version)
+    end
+    assert_redirected_to private_user_path(@second)
+    assert_not flash.empty?
+  end
+  
+  test 'delete version' do
+    log_in_as(@first)
+    assert_difference 'Private::PanoVersion.count', -1 do
+      delete private_pano_version_path(@pano_version)
+    end
+    assert_redirected_to private_show_pano_path(@pub_pano)
+  end
 end

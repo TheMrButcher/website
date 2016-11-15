@@ -1,7 +1,3 @@
-.add-pano-version-form {
-  padding: 0rem 1rem 1rem;
-}
-
 .pano-version-title {
   @extend .rounded;
   @extend .h5;
@@ -29,6 +25,10 @@
 
 .pano-version-content {
   margin-bottom: 1rem;
+}
+
+.pano-version-tools-block {
+  margin-bottom: 0.5rem;
 }
 
 .pano-version-info-block {

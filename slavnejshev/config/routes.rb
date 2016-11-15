@@ -6,12 +6,12 @@ Rails.application.routes.draw do
     
     resources :users
     resources :folders, only: [:create, :update]
-    resources :panoramas, only: [:create, :update]
+    resources :panoramas, only: [:create, :update, :destroy]
     
     resources :panoramas do
       resources :pano_versions, only: [:create]
     end
-    resources :pano_versions, only: [:update]
+    resources :pano_versions, only: [:update, :destroy]
     
     get 'roots', to: 'folders#index'
     get 'roots/new', to: 'folders#new'

@@ -1,6 +1,15 @@
 <div class="active-pano-version">
   <%= render partial: 'private/pano_versions/title', locals: { version: version, make_link: false } %>
   <div class="pano-version-content">
+    <% if admin_or_owner_of?(version.panorama.folder) %>
+      <div class="container pano-version-tools-block">
+        <div class="destroy-pano-version-button col-md-6 offset-md-3">
+          <%= form_for(version, method: :delete, data: { confirm: t('.confirm_destruction') }) do |f| %>
+            <%= f.submit t('.destroy_version'), class: 'btn btn-danger btn-block' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     <div class="pano-version-info-block">
       <div class="description-block">
         <%= render partial: 'shared/description', locals: {

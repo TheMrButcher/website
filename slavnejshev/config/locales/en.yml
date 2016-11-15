@@ -6,6 +6,7 @@ en:
   created_user: "Successfully created new user."
   created_folder: "Successfully created new folder."
   created_panorama: "Successfully created new panorama."
+  destroyed_panorama: "Successfully destroyed panorama."
   
   no_such_user: "No such user."
   logging_in_required: "Please log in first."
@@ -77,9 +78,15 @@ en:
         obj_name: "Panorama"
         version: "Version"
         submit_version: "Add version"
+        destroy_panorama: "Destroy panorama"
+        confirm_destruction: "Are you sure?"
         
     pano_versions:
       prefix: "Version"
+      
+      active:
+        destroy_version: "Destroy version"
+        confirm_destruction: "Are you sure?"
       
       resource:
         present: "loaded"

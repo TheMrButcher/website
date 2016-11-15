@@ -4,9 +4,9 @@ class Private::PanoVersionsController < ApplicationController
   Panorama = Private::Panorama
   PanoVersion = Private::PanoVersion
   
-  before_action :logged_in_user, only: [:create, :update]
+  before_action :logged_in_user, only: [:create, :update, :destroy]
   before_action :has_right_to_create, only: [:create]
-  before_action :has_right_to_update, only: [:update]
+  before_action :has_right_to_update, only: [:update, :destroy]
   
   def create
     next_index = 1
@@ -32,6 +32,11 @@ class Private::PanoVersionsController < ApplicationController
       unzip_pano_archive(params[:private_pano_version][:hotspots], :pano_hotspot_image)
     end
     redirect_to private_show_pano_version_path(@panorama, @pano_version.idx)
+  end
+  
+  def destroy
+    @pano_version.destroy
+    redirect_to private_show_pano_path(@panorama)
   end
   
   private

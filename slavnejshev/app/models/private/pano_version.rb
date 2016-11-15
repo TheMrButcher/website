@@ -7,9 +7,9 @@ class Private::PanoVersion < ApplicationRecord
   validates :description,
     length: { maximum: 1000 }
     
-  has_one :config, -> { where file_type: :pano_config }, as: :storage, class_name: 'Private::File'
-  has_many :tiles, -> { where file_type: :pano_tile }, as: :storage, class_name: 'Private::File'
-  has_many :hotspots, -> { where file_type: :pano_hotspot_image }, as: :storage, class_name: 'Private::File'
+  has_one :config, -> { where file_type: :pano_config }, as: :storage, class_name: 'Private::File', dependent: :destroy
+  has_many :tiles, -> { where file_type: :pano_tile }, as: :storage, class_name: 'Private::File', dependent: :destroy
+  has_many :hotspots, -> { where file_type: :pano_hotspot_image }, as: :storage, class_name: 'Private::File', dependent: :destroy
   
   belongs_to :panorama
   

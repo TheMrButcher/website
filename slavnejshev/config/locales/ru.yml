@@ -6,6 +6,7 @@ ru:
   created_user: "Пользователь успешно создан."
   created_folder: "Папка успешно создана."
   created_panorama: "Панорама успешно создана."
+  destroyed_panorama: "Панорама успешно удалена."
   
   no_such_user: "Пользователь не найден."
   logging_in_required: "Пожалуйста, войдите в систему."
@@ -60,9 +61,15 @@ ru:
         obj_name: "Панорама"
         version: "Версия"
         submit_version: "Добавить версию"
+        destroy_panorama: "Удалить панораму"
+        confirm_destruction: "Вы уверены, что хотите удалить панораму?"
         
     pano_versions:
       prefix: "Версия"
+      
+      active:
+        destroy_version: "Удалить версию"
+        confirm_destruction: "Вы уверены, что хотите удалить версию?"
       
       resource:
         present: "загружено"

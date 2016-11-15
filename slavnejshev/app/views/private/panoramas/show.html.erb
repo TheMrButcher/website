@@ -20,10 +20,18 @@
 
 <% content_for :block_content do %>
   <% if editable %>
-    <div class="add-pano-version-form">
-      <%= form_for(:private_pano_version, url: private_panorama_pano_versions_path(@panorama.id)) do |f| %>
-        <%= f.submit t('.submit_version'), class: 'btn btn-primary btn-lg btn-block' %>
-      <% end %>
+    <div class="container pano-tools-block">
+      <div class="add-pano-version-form col-md-6">
+        <%= form_for(:private_pano_version, url: private_panorama_pano_versions_path(@panorama.id)) do |f| %>
+          <%= f.submit t('.submit_version'), class: 'btn btn-primary btn-lg btn-block' %>
+        <% end %>
+      </div>
+      <div class="destroy-panorama-form col-md-6">
+        <%= form_for(:private_panorama, url: private_panorama_path(@panorama.id),
+          method: :delete, data: { confirm: t('.confirm_destruction') }) do |f| %>
+          <%= f.submit t('.destroy_panorama'), class: 'btn btn-danger btn-lg btn-block' %>
+        <% end %>
+      </div>
     </div>
   <% end %>
   <% @panorama.versions.reverse_each do |version| %>
