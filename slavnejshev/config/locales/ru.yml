@@ -80,6 +80,8 @@ ru:
         submit_tiles: "Загрузить тайлы"
         hotspots: "Изображения: "
         submit_hotspots: "Загрузить изображения"
+        copy_label: "Скопировать версию:"
+        or_label: "Или"
         
       head:
         full: "Полная"

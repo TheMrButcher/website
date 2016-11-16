@@ -12,6 +12,16 @@
     <% if admin_or_owner_of?(version.panorama.folder) %>
       <div class="resource-load-form container">
         <%= form_for(version, html: { multipart: true }) do |f| %>
+          <% resource_src = resource.to_s + "_src" %>
+          <div class="form-group row">
+            <%= label_tag resource_src, t('.copy_label'), class: 'col-md-5 col-lg-4 col-xl-3 col-form-label' %>
+            <div class="col-md-3 col-lg-2 col-xl-3">
+              <%= select_tag resource_src, options_for_select(version.panorama.versions.where.not(id: version.id).collect {|v| [v.idx, v.id]}), {include_blank: true, class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="or-delim-block row">
+            <div class="offset-xs-2"><b><%= t('.or_label') %></b></div>
+          </div>
           <div class="form-group row">
             <div class="col-md-8 col-lg-6">
               <%= f.file_field resource, class: 'form-control' %>

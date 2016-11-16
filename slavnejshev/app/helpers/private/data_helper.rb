@@ -13,9 +13,13 @@ module Private::DataHelper
     datum
   end
   
+  def make_prefix(version)
+    return "pano/" + version.id.to_s + "/"
+  end
+  
   def make_pano_file(file_path, file_datum, file_type)
     datum = get_or_add_datum(file_datum)
-    key = "pano/" + @pano_version.id.to_s + "/" + file_path
+    key = make_prefix(@pano_version) + file_path
     datum.files.create(
       original_name: File.basename(file_path), key: key, storage: @pano_version, file_type: file_type)
   end
@@ -28,6 +32,17 @@ module Private::DataHelper
         next unless entry.file?
         make_pano_file(entry.name, entry.get_input_stream.read, file_type)
       end
+    end
+  end
+  
+  def copy_files(from_version, to_version, file_type)
+    old_prefix = make_prefix(from_version)
+    new_prefix = make_prefix(to_version)
+    Private::File.where(file_type: file_type, storage: from_version).each do |file|
+      new_file = file.dup
+      new_file.storage = to_version
+      new_file.key.sub!(old_prefix, new_prefix)
+      new_file.save
     end
   end
 end

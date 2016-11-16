@@ -97,6 +97,8 @@ en:
         submit_tiles: "Upload tiles"
         hotspots: "Hotspots: "
         submit_hotspots: "Upload hotspots"
+        copy_label: "Copy version:"
+        or_label: "Or"
         
       head:
         full: "Full"

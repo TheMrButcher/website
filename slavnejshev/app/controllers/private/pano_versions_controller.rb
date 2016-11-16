@@ -8,6 +8,8 @@ class Private::PanoVersionsController < ApplicationController
   before_action :has_right_to_create, only: [:create]
   before_action :has_right_to_update, only: [:update, :destroy]
   
+  MEMBERS = {config: :pano_config, tiles: :pano_tile, hotspots: :pano_hotspot_image}
+  
   def create
     next_index = 1
     unless @panorama.versions.empty?
@@ -18,19 +20,33 @@ class Private::PanoVersionsController < ApplicationController
   end
   
   def update
-    pano_version_params = params.require(:private_pano_version).permit(:description)
-    @pano_version.update_attributes(pano_version_params)
+    if params.key?(:private_pano_version)
+      pano_version_params = params.require(:private_pano_version).permit(:description)
+      @pano_version.update_attributes(pano_version_params)
+      if @pano_version.config.nil? && params[:private_pano_version][:config].present?
+        config_io = params[:private_pano_version][:config]
+        make_pano_file(config_io.original_filename, config_io.read, :pano_config)
+      end
+      if @pano_version.tiles.empty? && params[:private_pano_version][:tiles].present?
+        unzip_pano_archive(params[:private_pano_version][:tiles], :pano_tile)
+      end
+      if @pano_version.hotspots.empty? && params[:private_pano_version][:hotspots].present?
+        unzip_pano_archive(params[:private_pano_version][:hotspots], :pano_hotspot_image)
+      end
+    end
     
-    if @pano_version.config.nil? && params[:private_pano_version][:config].present?
-      config_io = params[:private_pano_version][:config]
-      make_pano_file(config_io.original_filename, config_io.read, :pano_config)
+    MEMBERS.each do |member_name, file_type|
+      param = params[member_name.to_s + "_src"]
+      if param.present? && @pano_version.send(member_name).blank?
+        src_version = PanoVersion.find(param)
+        copy_files(src_version, @pano_version, file_type)
+      end
     end
-    if @pano_version.tiles.empty? && params[:private_pano_version][:tiles].present?
-      unzip_pano_archive(params[:private_pano_version][:tiles], :pano_tile)
+      
+    if @pano_version.config.nil? && params[:config_src].present?
+      
     end
-    if @pano_version.hotspots.empty? && params[:private_pano_version][:hotspots].present?
-      unzip_pano_archive(params[:private_pano_version][:hotspots], :pano_hotspot_image)
-    end
+    
     redirect_to private_show_pano_version_path(@panorama, @pano_version.idx)
   end
   
