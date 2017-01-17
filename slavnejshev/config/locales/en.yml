@@ -25,8 +25,6 @@ en:
   submit_session: "Log in"
   submit_user: "Add user"
   
-  roots_title: "Roots"
-  new_root_title: "New Root"
   folder_name_label: "Folder name:"
   panorama_folder_label: "Can store panoramas:"
   submit_folder: "Add root folder"
@@ -72,6 +70,17 @@ en:
         panorama_header_button: "Panoramas"
         panorama_label: "Panorama name:"
         submit_panorama: "Add panorama"
+        
+      index:
+        content_title: "Root Folders"
+        
+      new:
+        content_title: "New Root Folder"
+        name_label: "Folder name:"
+        owner_label: "Owner:"
+        public_label: "Public"
+        panoramas_label: "Supports panoramas"
+        submit_root: "Create root"
     
     panoramas:
       show:

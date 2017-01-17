@@ -56,6 +56,17 @@ ru:
         panorama_label: "Имя панорамы:"
         submit_panorama: "Добавить панораму"
         
+      index:
+        content_title: "Корневые папки"
+        
+      new:
+        content_title: "Новая корневая папка"
+        name_label: "Имя папки:"
+        owner_label: "Владелец:"
+        public_label: "Публичная"
+        panoramas_label: "Поддержка панорам"
+        submit_root: "Создать папку"
+        
     panoramas:
       show:
         obj_name: "Панорама"
