@@ -24,10 +24,10 @@
 
 .entity-icon {
   @extend .mx-auto;
-  @extend .text-center;
+  @extend .text-xs-center;
   margin-bottom: 0.5rem;
 }
 
 .entity-name {
-  @extend .text-center;
+  @extend .text-xs-center;
 }

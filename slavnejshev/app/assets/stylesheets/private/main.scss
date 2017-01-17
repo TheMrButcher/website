@@ -3,7 +3,7 @@
   background-color: #dcf5fc;
   
   .obj-tags {
-    @extend .text-center;
+    @extend .text-xs-center;
     .tag {
       margin-right: 0.5rem;
     }
